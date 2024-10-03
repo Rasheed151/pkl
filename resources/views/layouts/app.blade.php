@@ -161,7 +161,7 @@
                 </li>
 
                 <li class="item">
-                    <a href="http://127.0.0.1:8000/persiapan" class="nav_link">
+                    <a href="persiapan" class="nav_link">
                         <span class="navlink_icon">
                             <i class="bx bx-store-alt"></i>
                         </span>
@@ -191,7 +191,7 @@
                 </li>
 
                 <li class="item">
-                    <a href="http://127.0.0.1:8000/pelaksanaan" class="nav_link">
+                    <a href="pelaksanaan" class="nav_link">
                         <span class="navlink_icon">
                             <i class="bx bx-store-alt"></i>
                         </span>
@@ -214,7 +214,7 @@
                 </li>
 
                 <li class="item">
-                    <a href="http://127.0.0.1:8000/penyerahan" class="nav_link">
+                    <a href="penyerahan" class="nav_link">
                         <span class="navlink_icon">
                             <i class="bx bx-store-alt"></i>
                         </span>
