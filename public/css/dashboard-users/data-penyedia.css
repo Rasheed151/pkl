@@ -1,0 +1,413 @@
+/* |----------| FONT IMPORT |----------| */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* |----------| END | FONT IMPORT |----------| */
+
+
+
+/* |----------| GLOBAL |----------| */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --white-color: #fff;
+  --blue-color: #2c7d9d;
+  --grey-color: #707070;
+  --grey-color-light: #aaa;
+}
+
+body {
+  background-color: #e7f2fd;
+  transition: all 0.5s ease;
+}
+/* |----------| END | GLOBAL |----------| */
+
+
+
+/* |----------| NAVBAR |----------| */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background-color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo_item {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 22px;
+  font-weight: 500;
+  margin-left: 20px;
+  color: var(--blue-color);
+}
+
+.navbar img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.search_bar {
+  height: 47px;
+  max-width: 430px;
+  width: 100%;
+}
+
+.search_bar input {
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  font-size: 18px;
+  outline: none;
+  background-color: var(--white-color);
+  color: var(--grey-color);
+  border: 1px solid var(--grey-color-light);
+  padding: 0 20px;
+}
+
+/* Navbar Content */
+.navbar_content {
+    position: relative;
+    display: inline-block;
+}
+
+/* Profile Image */
+.profile {
+    cursor: pointer;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 160px;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+/* |----------| END | NAVBAR |----------| */
+
+
+
+/* |----------| SIDEBAR |----------| */
+.sidebar {
+  background-color: var(--white-color);
+  width: 260px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 70px 0;
+  z-index: 100;
+  overflow-y: auto; /* Menampilkan scrollbar saat diperlukan */
+  box-shadow: 0 0 1px var(--grey-color-light);
+  transition: all 0.5s ease;
+}
+
+.sidebar.close {
+  width: 80px;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 8px; /* Lebar scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--grey-color-light); /* Warna scrollbar */
+  border-radius: 4px; /* Radius scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: var(--white-color); /* Warna track scrollbar */
+}
+
+.sidebar.close {
+  width: 80px;
+}
+
+.menu_content {
+  position: relative;
+}
+
+.menu_title {
+  margin: 15px 0;
+  padding: 0 20px;
+  font-size: 18px;
+}
+
+.sidebar.close .menu_title {
+  padding: 6px 30px;
+}
+
+.menu_title::before {
+  color: var(--grey-color);
+  white-space: nowrap;
+}
+
+.menu_1::before {
+  content: "Input Data Desa";
+}
+
+.menu_2::before {
+  content: "Tahap Perencanaan";
+}
+
+.menu_3::before {
+  content: "Tahap Persiapan";
+}
+
+.menu_4::before {
+  content: "Pelaporan Serah Terima";
+}
+
+.menu_5::before {
+  content: "Tahap Pelaksanaan";
+}
+
+.sidebar.close .menu_title::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 18px;
+  border-radius: 12px;
+  background: var(--grey-color-light);
+}
+
+.menu_items {
+  padding: 0;
+  list-style: none;
+}
+
+.navlink {
+  font-size: 13px;
+}
+
+.navlink_icon {
+  position: relative;
+  font-size: 22px;
+  min-width: 50px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 6px;
+}
+.navlink_icon::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: calc(100% + 100px);
+  left: -20px;
+}
+
+.navlink_icon:hover {
+  background: var(--blue-color);
+}
+
+.sidebar .nav_link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--grey-color);
+  white-space: nowrap;
+}
+
+.sidebar.close .navlink {
+  display: none;
+}
+
+.nav_link:hover {
+  color: var(--white-color);
+  background: var(--blue-color);
+}
+
+.nav_link_active {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--grey-color);
+  white-space: nowrap; 
+  background: var(--blue-color);
+  color: var(--white-color);
+}
+
+.nav_link_active:hover {
+  color: var(--white-color);
+}
+
+.sidebar.close .nav_link:hover {
+  background: var(--white-color);
+}
+
+.submenu_item {
+  cursor: pointer;
+}
+
+.submenu {
+  display: none;
+}
+
+.submenu_item .arrow-left {
+  position: absolute;
+  right: 10px;
+  display: inline-block;
+  margin-right: auto;
+}
+
+.sidebar.close .submenu {
+  display: none;
+}
+
+.show_submenu ~ .submenu {
+  display: block;
+}
+
+.show_submenu .arrow-left {
+  transform: rotate(90deg);
+}
+
+.submenu .sublink {
+  padding: 15px 15px 15px 52px;
+}
+
+.bottom_content {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  width: 260px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.bottom {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 0;
+  justify-content: space-around;
+  padding: 18px 0;
+  text-align: center;
+  width: 100%;
+  color: var(--grey-color);
+  border-top: 1px solid var(--grey-color-light);
+  background-color: var(--white-color);
+}
+
+.bottom i {
+  font-size: 20px;
+}
+
+.bottom span {
+  font-size: 18px;
+}
+
+.sidebar.close .bottom_content {
+  width: 80px;
+  left: 0px;
+}
+
+.sidebar.close .bottom span {
+  display: none;
+}
+.sidebar.hoverable .collapse_sidebar {
+  display: none;
+}
+
+#sidebarOpen {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #sidebarOpen {
+    font-size: 25px;
+    display: block;
+    margin-right: 10px;
+    cursor: pointer;
+    color: var(--grey-color);
+  }
+  .sidebar.close {
+    left: -100%;
+  }
+  .search_bar {
+    display: none;
+  }
+  .sidebar.close .bottom_content {
+    left: -100%;
+  }
+}
+/* |----------| END | SIDEBAR |----------| */
+
+
+
+/* |----------| MAIN CONTENT |----------| */
+/* Main Content */
+.main-content {
+    transition: margin-left 0.5s ease;
+    margin-left: 16rem; /* Default when sidebar is expanded */
+}
+
+.main-content.full-width {
+    margin-left: 5rem; /* Adjust when sidebar is collapsed */
+}
+
+/* Truncate description text if too long */
+.truncate-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to display */
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
+
+/* Disable the spinner for number input */
+        /* For Chrome, Safari, Edge, Opera */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        /* For Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+/* |----------| END | MAIN CONTENT |----------| */
