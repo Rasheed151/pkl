@@ -180,6 +180,7 @@
             
 
             <button type="submit" class="tombol">Update</button>
+            <a href="{{ route('data_teknis.index') }}" class="tombol" style="text-align: center;">Kembali</a>
         </form>
     </div>
 </body>

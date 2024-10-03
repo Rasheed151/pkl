@@ -259,16 +259,22 @@
                 if (bidang === "Pembangunan Desa") {
                     volumeFieldsDiv.innerHTML = `
                         <div class="form-field">
-                            <label for="volume_kegiatan">Volume Kegiatan</label>
-                            <input type="text" name="volume_kegiatan" required placeholder="Masukkan Volume Kegiatan">
+                            <label for="volume">Volume Kegiatan</label>
+                            <input type="text" name="volume" required placeholder="Masukkan Volume Kegiatan">
                         </div>
                         <div class="form-field">
-                            <label for="satuan_volume">Satuan Volume</label>
-                            <input type="text" name="satuan_volume" required placeholder="Masukkan Satuan Volume">
+                            <label for="satuan">Satuan Volume</label>
+                            <input type="text" name="satuan" required placeholder="Masukkan Satuan Volume">
                         </div>
                     `;
+                }else{
+                    volumeFieldsDiv.innerHTML = `
+                        <div class="form-field">
+                            <label for="volume">Banyak Peserta</label>
+                            <input type="text" name="volume" required placeholder="Masukkan Volume Kegiatan">
+                        </div> `;
                 }
-                volumeFieldsDiv.classList.toggle('hidden', volumeFieldsDiv.innerHTML === "");
+                ;
             }
 
             // On page load, set the selected bidang and update the sub_bidang options

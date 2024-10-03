@@ -189,6 +189,7 @@
             </div>
 
             <button type="submit" class="tombol">Update</button>
+            <a href="{{ route('jadwal.index') }}" class="tombol" style="text-align: center;">Kembali</a>
         </form>
     </div>
 </body>

@@ -126,6 +126,24 @@
             color: #333;
             resize: none;
         }
+
+        /* Button styling */
+        .tombol {
+            grid-column: span 2;
+            padding: 12px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .tombol:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
     </style>
 </head>
 
@@ -149,11 +167,12 @@
             @method('PUT')
             <div class="form-field">
                 <label for="latar_belakang" class="block text-sm font-medium text-gray-700">Latar Belakang</label>
-                <textarea name="latar_belakang" required placeholder="Masukkan Latar Belakang" id
+                <textarea name="latar_belakang" required placeholder="Masukkan Latar Belakang" id 
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
             </div>
 
             <button type="submit" class="tombol">Update</button>
+            <a href="{{ route('data_kak.index') }}" class="tombol" style="text-align: center;">Kembali</a>
         </form>
     </div>
 </body>
