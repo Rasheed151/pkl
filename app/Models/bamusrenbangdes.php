@@ -31,7 +31,7 @@ class bamusrenbangdes extends Model
 
     public function narasumbers()
     {
-        return $this->hasMany(Narasumber::class, 'bamusrenbangdesId');
+        return $this->hasMany(narasumber::class, 'bamusrenbangdesId');
     }
 }
 
