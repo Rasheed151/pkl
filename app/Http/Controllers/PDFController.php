@@ -76,11 +76,11 @@ class PDFController extends Controller
     public function rkp($userId) // Menangkap parameter $userId dari route
     {
         // Mengambil satu entitas data_rkp berdasarkan userId
-        $data = data_rkp::where('userId', auth()->id())->get();
+        $rkp_desa = data_rkp::where('userId', auth()->id())->get();
         $desa = data_desa::where('userId', $userId)->firstOrFail(); // Pastikan data desa ditemukan
 
         // Membuat PDF dan mengembalikannya untuk ditampilkan di browser
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('perencanaan.rkp.pdf', compact('data', 'desa'));
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('perencanaan.rkp.pdf', compact('rkp_desa', 'desa'));
 
         return $pdf->stream('data RKP ' . $desa->tahun_anggaran . '.pdf');
     }

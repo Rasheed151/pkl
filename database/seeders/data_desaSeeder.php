@@ -15,13 +15,14 @@ class data_desaSeeder extends Seeder
     public function run(): void
     {
         DB::table('data_desa')->insert([
+            [
             'provinsi' => 'provinsi',
             'kabupaten' => 'kabupaten',
             'kecamatan' => 'kecamatan',
             'desa' => 'desa',
             'kode_desa' => '123',
             'alamat_kantor' => 'alamat_kantor',
-            'email' => 'email@gmail,com',
+            'email' => 'email@gmail.com',
             'npwp' => 'npwp',
             'no_tahun_perpub_pjb' => 'no_tahun_perpub_pjb',
             'tanggal_perpub_pjb' => '2024-08-20',
@@ -30,6 +31,40 @@ class data_desaSeeder extends Seeder
             'nama_kades' => 'nama_kades',
             'tahun_anggaran' => '2024-08-19',
             'userId' => '1',
+        ],
+        [
+            'provinsi' => 'provinsi',
+            'kabupaten' => 'kabupaten',
+            'kecamatan' => 'kecamatan',
+            'desa' => 'desa',
+            'kode_desa' => '123',
+            'alamat_kantor' => 'alamat_kantor',
+            'email' => 'email@gmail.com',
+            'npwp' => 'npwp',
+            'no_tahun_perpub_pjb' => 'no_tahun_perpub_pjb',
+            'tanggal_perpub_pjb' => '2024-08-20',
+            'no_pengesahan_dpa' => 'no_pengesahan_dpa',
+            'tanggal_pengesahan_dpa' => '2024-08-20',
+            'nama_kades' => 'nama_kades',
+            'tahun_anggaran' => '2024-08-19',
+            'userId' => '2',
+        ],[
+            'provinsi' => 'provinsi',
+            'kabupaten' => 'kabupaten',
+            'kecamatan' => 'kecamatan',
+            'desa' => 'desa',
+            'kode_desa' => '123',
+            'alamat_kantor' => 'alamat_kantor',
+            'email' => 'email@gmail.com',
+            'npwp' => 'npwp',
+            'no_tahun_perpub_pjb' => 'no_tahun_perpub_pjb',
+            'tanggal_perpub_pjb' => '2024-08-20',
+            'no_pengesahan_dpa' => 'no_pengesahan_dpa',
+            'tanggal_pengesahan_dpa' => '2024-08-20',
+            'nama_kades' => 'nama_kades',
+            'tahun_anggaran' => '2024-08-19',
+            'userId' => '3',
+        ]
         ]);
     }
 }

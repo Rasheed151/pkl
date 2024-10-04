@@ -114,11 +114,11 @@
                         <form action="{{ route('data_rkp.store') }}" method="POST">
                             @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Dropdown Bidang Kegiatan -->
                                 <div>
                                     <label for="bidang" class="block text-sm font-medium text-gray-700">Bidang Kegiatan</label>
-                                    <select id="bidang" name="bidang"
-                                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                        onchange="updateFields(this.value)">
+                                    <select id="bidang" name="bidang" onchange="updateVolumeFields()"
+                                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         <option value="" disabled selected>Pilih Bidang Kegiatan</option>
                                         <option value="Pemerintahan Desa">Pemerintahan Desa</option>
                                         <option value="Pembangunan Desa">Pembangunan Desa</option>
@@ -127,57 +127,60 @@
                                     </select>
                                 </div>
 
+                                <!-- Sub Bidang -->
                                 <div>
                                     <label for="sub_bidang" class="block text-sm font-medium text-gray-700">Sub Bidang</label>
-                                    <select id="sub_bidang" name="sub_bidang"
+                                    <input type="text" name="sub_bidang" required placeholder="Masukkan Sub Bidang"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                        <option value="" disabled selected>Pilih Sub Bidang Kegiatan</option>
-                                    </select>
                                 </div>
 
+                                <!-- Nama Kegiatan -->
                                 <div>
                                     <label for="nama_kegiatan" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
-                                    <input type="text" name="nama_kegiatan" required placeholder="Masukkan  Nama Kegiatan"
+                                    <input type="text" name="nama_kegiatan" required placeholder="Masukkan Nama Kegiatan"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
+                                <!-- Volume Fields (Dynamically updated) -->
+                                <div id="volume-fields" class="hidden">
+                                    <!-- Volume fields will be dynamically inserted here -->
+                                </div>
+
+                                <!-- Lokasi Kegiatan -->
                                 <div>
                                     <label for="lokasi_kegiatan" class="block text-sm font-medium text-gray-700">Lokasi Kegiatan</label>
                                     <textarea name="lokasi_kegiatan" required placeholder="Masukkan Lokasi Kegiatan"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                                 </div>
 
-                                <div id="volume-fields" class="hidden">
-                                    <!-- Volume fields will be dynamically inserted here -->
-                                </div>
-
+                                <!-- Sasaran Manfaat -->
                                 <div>
                                     <label for="sasaran_manfaat" class="block text-sm font-medium text-gray-700">Sasaran Manfaat</label>
-                                    <input type="text" name="sasaran_manfaat" required placeholder="Masukkan nama Sasaran Manfaat"
+                                    <input type="text" name="sasaran_manfaat" required placeholder="Masukkan Sasaran Manfaat"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
+                                <!-- Tanggal Awal dan Akhir -->
                                 <div>
                                     <label for="tanggal_awal" class="block text-sm font-medium text-gray-700">Tanggal Dimulai</label>
-                                    <input type="date" name="tanggal_awal" required placeholder="Masukkan nama Waktu Pelaksanaan"
+                                    <input type="date" name="tanggal_awal" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
-
                                 <div>
                                     <label for="tanggal_akhir" class="block text-sm font-medium text-gray-700">Tanggal Selesai</label>
-                                    <input type="date" name="tanggal_akhir" required placeholder="Masukkan nama Waktu Pelaksanaan"
+                                    <input type="date" name="tanggal_akhir" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
+                                <!-- Jumlah dan Sumber Biaya -->
                                 <div>
                                     <label for="jumlah_biaya" class="block text-sm font-medium text-gray-700">Jumlah Biaya</label>
-                                    <input type="text" name="jumlah_biaya" required placeholder="Masukkan  Jumlah Biaya"
+                                    <input type="text" name="jumlah_biaya" required placeholder="Masukkan Jumlah Biaya"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
-
                                 <div>
                                     <label for="sumber_biaya" class="block text-sm font-medium text-gray-700">Sumber Biaya</label>
-                                    <input type="text" name="sumber_biaya" required placeholder="Masukkan  Sumber Biaya"
+                                    <input type="text" name="sumber_biaya" required placeholder="Masukkan Sumber Biaya"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
@@ -197,6 +200,7 @@
                                     <input type="checkbox" name="pihak_ketiga" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="1">
                                 </div>
 
+                                <!-- Rencana Pelaksana Kegiatan -->
                                 <div>
                                     <label for="rencana_pelaksana_kegiatan" class="block text-sm font-medium text-gray-700">Rencana Pelaksana Kegiatan</label>
                                     <select name="rencana_pelaksana_kegiatan" required
@@ -300,108 +304,39 @@
         @endforeach
 
         <script>
-            const subBidangOptions = {
-                "Pemerintahan Desa": [
-                    "Sub Bidang Pemerintahan Desa 1",
-                    "Sub Bidang Pemerintahan Desa 2",
-                    "Sub Bidang Pemerintahan Desa 3",
-                    "Sub Bidang Pemerintahan Desa 4"
-                ],
-                "Pembangunan Desa": [
-                    "Sub Bidang Pembangunan Desa 1",
-                    "Sub Bidang Pembangunan Desa 2",
-                    "Sub Bidang Pembangunan Desa 3",
-                    "Sub Bidang Pembangunan Desa 4"
-                ],
-                "Pembinaan Kemasyarakatan": [
-                    "Sub Bidang Pembinaan Kemasyarakatan 1",
-                    "Sub Bidang Pembinaan Kemasyarakatan 2",
-                    "Sub Bidang Pembinaan Kemasyarakatan 3",
-                    "Sub Bidang Pembinaan Kemasyarakatan 4"
-                ],
-                "Pemberdayaan Masyarakat": [
-                    "Sub Bidang Pemberdayaan Masyarakat 1",
-                    "Sub Bidang Pemberdayaan Masyarakat 2",
-                    "Sub Bidang Pemberdayaan Masyarakat 3",
-                    "Sub Bidang Pemberdayaan Masyarakat 4"
-                ]
-            };
+    function updateVolumeFields() {
+        const bidang = document.getElementById('bidang').value;
+        const volumeFields = document.getElementById('volume-fields');
 
-            function updateFields(bidang) {
-                const subBidangSelect = document.getElementById("sub_bidang");
-                const volumeFields = document.getElementById("volume-fields");
+        if (bidang === 'Pembangunan Desa') {
+            volumeFields.innerHTML = `
+                <div>
+                    <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
+                    <input type="text" name="volume" required placeholder="Masukkan jumlah Volume"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="satuan" class="block text-sm font-medium text-gray-700">Satuan Volume</label>
+                    <select id="satuan" name="satuan"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="" disabled selected>Pilih Satuan</option>
+                        <option value="Meter³">Meter³</option>
+                        <option value="Meter Jalan">Meter Jalan</option>
+                    </select>
+                </div>`;
+        } else {
+            volumeFields.innerHTML = `
+                <div>
+                    <label for="volume" class="block text-sm font-medium text-gray-700">Banyak Peserta</label>
+                    <input type="text" name="volume" required placeholder="Masukkan Banyak Peserta"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>`;
+        }
 
-                // Update Sub Bidang options
-                subBidangSelect.innerHTML = '<option value="" disabled selected>Pilih Sub Bidang Kegiatan</option>'; // Clear existing options
-                if (subBidangOptions[bidang]) {
-                    subBidangOptions[bidang].forEach(function(subBidang) {
-                        const option = document.createElement("option");
-                        option.value = subBidang;
-                        option.textContent = subBidang;
-                        subBidangSelect.appendChild(option);
-                    });
-                }
-
-                volumeFields.innerHTML = `<div>
-                                    <label for="volume" class="block text-sm font-medium text-gray-700">Banyak Peserta</label>
-                                    <input type="text" name="volume" required placeholder="Masukkan nama Banyak Peserta"
-                                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>`;
-
-                switch (bidang) {
-                    case 'Pemerintahan Desa':
-                        volumeFields.innerHTML = `<div>
-                                    <label for="volume" class="block text-sm font-medium text-gray-700">Banyak Peserta</label>
-                                    <input type="text" name="volume" required placeholder="Masukkan nama Banyak Peserta"
-                                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>`;
-                        volumeFields.classList.remove('hidden');
-                        break;
-                    case 'Pembangunan Desa':
-                        volumeFields.innerHTML = `<div>
-                                    <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
-                                    <input type="text" name="volume" required placeholder="Masukkan jumlah Volume"
-                                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>
-                                <div>
-                            <label for="satuan" class="block text-sm font-medium text-gray-700">Satuan Volume</label>
-                            <select id="satuan" name="satuan"
-                                class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                <option value="" disabled selected>Pilih Satuan</option>
-                                <option value="Meter³">Meter³</option>
-                                <option value="Meter Jalan">Meter Jalan</option>
-                            </select>
-                        </div>`;
-                        volumeFields.classList.remove('hidden');
-                        break;
-                    case 'Pembinaan Kemasyarakatan':
-                        volumeFields.innerHTML = `<div>
-                                    <label for="volume" class="block text-sm font-medium text-gray-700">Banyak Peserta</label>
-                                    <input type="text" name="volume" required placeholder="Masukkan nama Banyak Peserta"
-                                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>`;
-                        volumeFields.classList.remove('hidden');
-                        break;
-                    case 'Pemberdayaan Masyarakat':
-                        volumeFields.innerHTML = `<div>
-                                    <label for="volume" class="block text-sm font-medium text-gray-700">Banyak Peserta</label>
-                                    <input type="text" name="volume" required placeholder="Masukkan nama Banyak Peserta"
-                                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>`;
-                        volumeFields.classList.remove('hidden');
-                        break;
-                    default:
-                        volumeFields.classList.add('hidden');
-                        break;
-                }
-            }
-        </script>
-
-
-
-
-
-
+        // Display the volume fields section
+        volumeFields.classList.remove('hidden');
+    }
+</script>
 
 
 

@@ -17,9 +17,9 @@ return new class extends Migration
         $table->string('kabupaten');
         $table->string('kecamatan');
         $table->string('desa');
-        $table->integer('kode_desa');
+        $table->string('kode_desa',20);
         $table->text('alamat_kantor');
-        $table->string('email')->unique();
+        $table->string('email');
         $table->string('npwp');
         $table->string('no_tahun_perpub_pjb');
         $table->date('tanggal_perpub_pjb');

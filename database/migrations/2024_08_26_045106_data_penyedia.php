@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('alamat_perusahaan');
             $table->string('no_hp');
             $table->string('npwp');
-            $table->integer('nib');
+            $table->string('nib',20);
             $table->unsignedBigInteger('userId'); // Updated column type
             $table->timestamps();
     
