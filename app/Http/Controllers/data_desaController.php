@@ -28,7 +28,7 @@ class data_desaController extends Controller
             'kabupaten' => 'required|string|max:255',
             'kecamatan' => 'required|string|max:255',
             'desa' => 'required|string|max:255',
-            'kode_desa' => 'required|numeric',
+            'kode_desa' => 'required|',
             'alamat_kantor' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'npwp' => 'required|string|max:255',
@@ -37,7 +37,7 @@ class data_desaController extends Controller
             'no_pengesahan_dpa' => 'required|string|max:255',
             'tanggal_pengesahan_dpa' => 'required|date',
             'nama_kades' => 'required|string|max:255',
-            'tahun_anggaran' => 'required|date',
+            'tahun_anggaran' => 'required|string',
             
 
         ]);
@@ -79,7 +79,7 @@ class data_desaController extends Controller
             'kabupaten' => 'required|string|max:255',
             'kecamatan' => 'required|string|max:255',
             'desa' => 'required|string|max:255',
-            'kode_desa' => 'required|numeric',
+            'kode_desa' => 'required|string',
             'alamat_kantor' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'npwp' => 'required|string|max:255',
@@ -88,7 +88,7 @@ class data_desaController extends Controller
             'no_pengesahan_dpa' => 'required|string|max:255',
             'tanggal_pengesahan_dpa' => 'required|date',
             'nama_kades' => 'required|string|max:255',
-            'tahun_anggaran' => 'required|date',
+            'tahun_anggaran' => 'required|string',
 
         ]);
 

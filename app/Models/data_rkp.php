@@ -21,6 +21,8 @@ class data_rkp extends Model
         'lokasi_kegiatan',
         'volume',
         'sasaran_manfaat',
+        'tanggal_mulai',
+        'tanggal_selesai',
         'waktu_pelaksanaan',
         'jumlah_biaya',
         'sumber_biaya',

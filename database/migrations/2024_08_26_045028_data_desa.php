@@ -26,7 +26,7 @@ return new class extends Migration
         $table->string('no_pengesahan_dpa');
         $table->date('tanggal_pengesahan_dpa');
         $table->string('nama_kades');
-        $table->date('tahun_anggaran')->year()->nullable();
+        $table->string('tahun_anggaran',25);
         $table->foreignId ('userId'); // Updated column type
         $table->timestamps();
 

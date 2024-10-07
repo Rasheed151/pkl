@@ -201,7 +201,7 @@
           </div>
           <div class="mb-3">
             <label for="tahun_anggaran" class="form-label">Tahun Anggaran</label>
-            <input type="date" class="form-control" id="tahun_anggaran" name="tahun_anggaran" value="{{ $data->tahun_anggaran }}" required>
+            <input type="text" class="form-control" id="tahun_anggaran" name="tahun_anggaran" value="{{ $data->tahun_anggaran }}" required>
           </div>
           <div class="mb-3">
 

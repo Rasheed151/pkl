@@ -94,7 +94,8 @@
             color: #333;
             background-color: #f9f9f9;
             transition: background-color 0.3s, border-color 0.3s;
-            resize: none; /* Prevent resizing on textarea */
+            resize: none;
+            /* Prevent resizing on textarea */
         }
 
         input[type="text"]:focus,
@@ -135,160 +136,158 @@
         <h1>Edit Data RKP</h1>
 
         @if ($errors->any())
-            <div class="alert">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
-
         <form action="{{ route('data_rkp.update', $data_rkp->id) }}" method="POST">
             @csrf
             @method('PUT')
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dropdown Bidang Kegiatan -->
+                <div>
+                    <label for="bidang" class="block text-sm font-medium text-gray-700">Bidang Kegiatan</label>
+                    <select id="bidang" name="bidang" onchange="updateVolumeFields()"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="" disabled>Pilih Bidang Kegiatan</option>
+                        <option value="Pemerintahan Desa" {{ $data_rkp->bidang == 'Pemerintahan Desa' ? 'selected' : '' }}>Pemerintahan Desa</option>
+                        <option value="Pembangunan Desa" {{ $data_rkp->bidang == 'Pembangunan Desa' ? 'selected' : '' }}>Pembangunan Desa</option>
+                        <option value="Pembinaan Kemasyarakatan" {{ $data_rkp->bidang == 'Pembinaan Kemasyarakatan' ? 'selected' : '' }}>Pembinaan Kemasyarakatan</option>
+                        <option value="Pemberdayaan Masyarakat" {{ $data_rkp->bidang == 'Pemberdayaan Masyarakat' ? 'selected' : '' }}>Pemberdayaan Masyarakat</option>
+                    </select>
+                </div>
 
-            <div class="form-field">
-                <label for="bidang">Bidang Kegiatan</label>
-                <select id="bidang" name="bidang" class="mt-2" onchange="updateFields(this.value)">
-                    <option value="" disabled>Pilih Bidang Kegiatan</option>
-                    <option value="Pemerintahan Desa" {{ $data_rkp->bidang == 'Pemerintahan Desa' ? 'selected' : '' }}>Pemerintahan Desa</option>
-                    <option value="Pembangunan Desa" {{ $data_rkp->bidang == 'Pembangunan Desa' ? 'selected' : '' }}>Pembangunan Desa</option>
-                    <option value="Pembinaan Kemasyarakatan" {{ $data_rkp->bidang == 'Pembinaan Kemasyarakatan' ? 'selected' : '' }}>Pembinaan Kemasyarakatan</option>
-                    <option value="Pemberdayaan Masyarakat" {{ $data_rkp->bidang == 'Pemberdayaan Masyarakat' ? 'selected' : '' }}>Pemberdayaan Masyarakat</option>
-                </select>
-            </div>
+                <!-- Sub Bidang -->
+                <div>
+                    <label for="sub_bidang" class="block text-sm font-medium text-gray-700">Sub Bidang</label>
+                    <input type="text" name="sub_bidang" required placeholder="Masukkan Sub Bidang" value="{{ $data_rkp->sub_bidang }}"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
-            <div class="form-field">
-                <label for="sub_bidang">Sub Bidang</label>
-                <select id="sub_bidang" name="sub_bidang" class="mt-2">
-                    <option value="" disabled>Pilih Sub Bidang Kegiatan</option>
-                </select>
-            </div>
+                <!-- Nama Kegiatan -->
+                <div>
+                    <label for="nama_kegiatan" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
+                    <input type="text" name="nama_kegiatan" required placeholder="Masukkan Nama Kegiatan" value="{{ $data_rkp->nama_kegiatan }}"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
-            <div class="form-field">
-                <label for="nama_kegiatan">Nama Kegiatan</label>
-                <input type="text" name="nama_kegiatan" value="{{ old('nama_kegiatan', $data_rkp->nama_kegiatan) }}" required placeholder="Masukkan Nama Kegiatan">
-            </div>
+                <!-- Volume Fields (Dynamically updated) -->
+                <div id="volume-fields" class="{{ $data_rkp->bidang === 'Pembangunan Desa' ? '' : 'hidden' }}">
+                    <!-- Volume fields will be dynamically inserted here -->
+                </div>
 
-            <div class="form-field">
-                <label for="lokasi_kegiatan">Lokasi Kegiatan</label>
-                <textarea name="lokasi_kegiatan" required placeholder="Masukkan Lokasi Kegiatan">{{ old('lokasi_kegiatan', $data_rkp->lokasi_kegiatan) }}</textarea>
-            </div>
+                <!-- Lokasi Kegiatan -->
+                <div>
+                    <label for="lokasi_kegiatan" class="block text-sm font-medium text-gray-700">Lokasi Kegiatan</label>
+                    <textarea name="lokasi_kegiatan" required placeholder="Masukkan Lokasi Kegiatan"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $data_rkp->lokasi_kegiatan }}</textarea>
+                </div>
 
-            <div id="volume-fields" class="hidden">
-                <!-- Volume fields will be dynamically inserted here -->
-            </div>
+                <!-- Sasaran Manfaat -->
+                <div>
+                    <label for="sasaran_manfaat" class="block text-sm font-medium text-gray-700">Sasaran Manfaat</label>
+                    <input type="text" name="sasaran_manfaat" required placeholder="Masukkan Sasaran Manfaat" value="{{ $data_rkp->sasaran_manfaat }}"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
-            <div class="form-field">
-                <label for="sasaran_manfaat">Sasaran Manfaat</label>
-                <input type="text" name="sasaran_manfaat" value="{{ old('sasaran_manfaat', $data_rkp->sasaran_manfaat) }}" required placeholder="Masukkan nama Sasaran Manfaat">
-            </div>
+                <!-- Tanggal Awal dan Akhir -->
+                <div>
+                    <label for="tanggal_awal" class="block text-sm font-medium text-gray-700">Tanggal Dimulai</label>
+                    <input type="date" name="tanggal_awal" required value="{{ $data_rkp->tanggal_mulai }}"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="tanggal_akhir" class="block text-sm font-medium text-gray-700">Tanggal Selesai</label>
+                    <input type="date" name="tanggal_akhir" required value="{{ $data_rkp->tanggal_selesai }}"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
-            <div class="form-field">
-                <label for="waktu_pelaksanaan">Waktu Pelaksanaan</label>
-                <input type="date" name="waktu_pelaksanaan" value="{{ old('waktu_pelaksanaan', $data_rkp->waktu_pelaksanaan) }}" required>
-            </div>
+                <!-- Jumlah dan Sumber Biaya -->
+                <div>
+                    <label for="jumlah_biaya" class="block text-sm font-medium text-gray-700">Jumlah Biaya</label>
+                    <input type="text" name="jumlah_biaya" required placeholder="Masukkan Jumlah Biaya" value="{{ $data_rkp->jumlah_biaya }}"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="sumber_biaya" class="block text-sm font-medium text-gray-700">Sumber Biaya</label>
+                    <input type="text" name="sumber_biaya" required placeholder="Masukkan Sumber Biaya" value="{{ $data_rkp->sumber_biaya }}"
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
-            <div class="form-field">
-                <label for="jumlah_biaya">Jumlah Biaya</label>
-                <input type="text" name="jumlah_biaya" value="{{ old('jumlah_biaya', $data_rkp->jumlah_biaya) }}" required placeholder="Masukkan Jumlah Biaya">
-            </div>
+                <!-- Swakelola, Kerjasama Antar Desa, Pihak Ketiga -->
+                <div>
+                    <label for="swakelola" class="form-label">Swakelola:</label>
+                    <input type="hidden" name="swakelola" value="0">
+                    <input type="checkbox" name="swakelola" value="1" {{ $data_rkp->swakelola ? 'checked' : '' }}
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="kerjasama_desa" class="form-label">Kerjasama Antar Desa:</label>
+                    <input type="hidden" name="kerjasama_desa" value="0">
+                    <input type="checkbox" name="kerjasama_desa" value="1" {{ $data_rkp->kerjasama_desa ? 'checked' : '' }}
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="pihak_ketiga" class="form-label">Kerjasama Pihak Ketiga:</label>
+                    <input type="hidden" name="pihak_ketiga" value="0">
+                    <input type="checkbox" name="pihak_ketiga" value="1" {{ $data_rkp->pihak_ketiga ? 'checked' : '' }}
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
-            <div class="form-field">
-                <label for="sumber_biaya">Sumber Biaya</label>
-                <input type="text" name="sumber_biaya" value="{{ old('sumber_biaya', $data_rkp->sumber_biaya) }}" required placeholder="Masukkan Sumber Biaya">
-            </div>
-
-            <div class="form-field">
-                <label for="swakelola">Swakelola</label>
-                <input type="checkbox" name="swakelola" value="1" {{ $data_rkp->swakelola ? 'checked' : '' }}>
-            </div>
-
-            <div class="form-field">
-                <label for="kerjasama_desa">Kerjasama Desa</label>
-                <input type="checkbox" name="kerjasama_desa" value="1" {{ $data_rkp->kerjasama_desa ? 'checked' : '' }}>
-            </div>
-
-            <div class="form-field">
-                <label for="pihak_ketiga">Pihak Ketiga</label>
-                <input type="checkbox" name="pihak_ketiga" value="1" {{ $data_rkp->pihak_ketiga ? 'checked' : '' }}>
-            </div>
-
-            <div class="form-field">
-                <label for="rencana_pelaksana_kegiatan">Pelaksana Kegiatan</label>
-                <input type="text" name="rencana_pelaksana_kegiatan" value="{{ old('rencana_pelaksana_kegiatan', $data_rkp->rencana_pelaksana_kegiatan) }}" required placeholder="Masukkan Pelaksana Kegiatan">
+                <!-- Rencana Pelaksana Kegiatan -->
+                <div>
+                    <label for="rencana_pelaksana_kegiatan" class="block text-sm font-medium text-gray-700">Rencana Pelaksana Kegiatan</label>
+                    <select name="rencana_pelaksana_kegiatan" required
+                        class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        @foreach ($data_aparat as $data)
+                        <option value="{{ $data->nama }}" {{ $data_rkp->rencana_pelaksana_kegiatan == $data->nama ? 'selected' : '' }}>
+                            {{ $data->nama }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
             <button type="submit" class="tombol">Update</button>
+            <a href="{{ route('data_rkp.index') }}" class="tombol" style="text-align: center;">Kembali</a>
         </form>
 
         <script>
-            const subBidangOptions = {
-                "Pemerintahan Desa": [
-                    "Sub Bidang Pemerintahan Desa 1",
-                    "Sub Bidang Pemerintahan Desa 2"
-                ],
-                "Pembangunan Desa": [
-                    "Sub Bidang Pembangunan Desa 1",
-                    "Sub Bidang Pembangunan Desa 2"
-                ],
-                "Pembinaan Kemasyarakatan": [
-                    "Sub Bidang Pembinaan 1",
-                    "Sub Bidang Pembinaan 2"
-                ],
-                "Pemberdayaan Masyarakat": [
-                    "Sub Bidang Pemberdayaan 1",
-                    "Sub Bidang Pemberdayaan 2"
-                ]
-            };
-
-            function updateFields(bidang) {
-                const subBidangSelect = document.getElementById('sub_bidang');
-                const volumeFieldsDiv = document.getElementById('volume-fields');
-                volumeFieldsDiv.innerHTML = ""; // Clear existing fields
-
-                // Populate sub bidang options
-                subBidangSelect.innerHTML = '<option value="" disabled selected>Pilih Sub Bidang Kegiatan</option>';
-                subBidangOptions[bidang].forEach(option => {
-                    subBidangSelect.innerHTML += `<option value="${option}">${option}</option>`;
-                });
-
-                // Display volume fields based on selection
-                if (bidang === "Pembangunan Desa") {
-                    volumeFieldsDiv.innerHTML = `
-                        <div class="form-field">
-                            <label for="volume">Volume Kegiatan</label>
-                            <input type="text" name="volume" required placeholder="Masukkan Volume Kegiatan">
-                        </div>
-                        <div class="form-field">
-                            <label for="satuan">Satuan Volume</label>
-                            <input type="text" name="satuan" required placeholder="Masukkan Satuan Volume">
-                        </div>
-                    `;
-                }else{
-                    volumeFieldsDiv.innerHTML = `
-                        <div class="form-field">
-                            <label for="volume">Banyak Peserta</label>
-                            <input type="text" name="volume" required placeholder="Masukkan Volume Kegiatan">
-                        </div> `;
-                }
-                ;
-            }
-
-            // On page load, set the selected bidang and update the sub_bidang options
             document.addEventListener("DOMContentLoaded", function() {
-                const selectedBidang = "{{ $data_rkp->bidang }}";
-                if (selectedBidang) {
-                    updateFields(selectedBidang);
-                    // Set selected sub_bidang if applicable
-                    const subBidangSelect = document.getElementById('sub_bidang');
-                    subBidangSelect.value = "{{ $data_rkp->sub_bidang }}"; // Set the existing value
-                }
+                updateVolumeFields(); // Ensure fields are displayed on page load based on the selected value
             });
+
+            function updateVolumeFields() {
+                const bidang = document.getElementById('bidang').value;
+                const volumeFields = document.getElementById('volume-fields');
+
+                if (bidang === 'Pembangunan Desa') {
+                    volumeFields.innerHTML = `
+                <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
+                <input type="text" name="volume" placeholder="Masukkan Volume" value="{{ $volume }}"
+                    class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <label for="satuan" class="block text-sm font-medium text-gray-700">Satuan</label>
+                <input type="text" name="satuan" placeholder="Masukkan Satuan" value="{{ $satuan }}"
+                    class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            `;
+                    volumeFields.classList.remove('hidden');
+                } else {
+                    volumeFields.innerHTML = `
+                <label for="volume" class="block text-sm font-medium text-gray-700">Banyak Peserta</label>
+                <input type="text" name="volume" placeholder="Masukkan Banyak Peserta" value="{{ $data_rkp->volume }}"
+                    class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            `;
+                volumeFields.classList.remove('hidden');
+                }
+            }
         </script>
-    </div>
+
+
 </body>
 
 </html>

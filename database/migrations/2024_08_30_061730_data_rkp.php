@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('lokasi_kegiatan');
             $table->string('volume');
             $table->string('sasaran_manfaat');
+            $table->string('tanggal_mulai');
+            $table->string('tanggal_selesai');
             $table->integer('waktu_pelaksanaan');
             $table->integer('jumlah_biaya');
             $table->string('sumber_biaya');

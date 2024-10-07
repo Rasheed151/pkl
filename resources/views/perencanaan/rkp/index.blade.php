@@ -266,6 +266,14 @@
                                 <p class="isi-lihat">{{ $data->sasaran_manfaat }} </p>
                             </div>
                             <div class="mb-3">
+                                <label {{ $data->id }} class="form-label">Tanggal Mulai</label>
+                                <p class="isi-lihat">{{ $data->tanggal_mulai }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label {{ $data->id }} class="form-label">Tanggal Selesai</label>
+                                <p class="isi-lihat">{{ $data->tanggal_selesai }}</p>
+                            </div>
+                            <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Waktu Pelaksanaan</label>
                                 <p class="isi-lihat">{{ $data->waktu_pelaksanaan }} Hari</p>
                             </div>
