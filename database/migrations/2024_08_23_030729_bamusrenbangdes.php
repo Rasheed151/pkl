@@ -12,21 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bamusrenbangdes', function (Blueprint $table) {
-            $table->id();
-            $table->date('tanggal');
-            $table->time('jam');
-            $table->text('tempat');
-            $table->text('bahas_kegiatan');
-            $table->text('materi_pembahasan');
-            $table->string('ketua_bpd');
-            $table->string('wakil_masyarakat');
-            $table->string('pimpinan_rapat');
-            $table->string('notulen');
-            $table->text('kesepakatan_akhir');
-            $table->unsignedBigInteger('userId'); // Updated column type
+            $table->bigIncrements('id');
+            $table->date('date');
+            $table->time('time');
+            $table->text('place');
+            $table->text('activity_discussion');
+            $table->text('discussion_material');
+            $table->string('bpd_leader');
+            $table->string('community_representative');
+            $table->string('meeting_leader');
+            $table->string('note');
+            $table->text('final_agreement');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-    
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 

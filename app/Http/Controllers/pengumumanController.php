@@ -11,69 +11,35 @@ class pengumumanController extends Controller
 {
     public function index()
     {
-        $pengumuman = pengumuman::where('userId', auth()->id())->get();
+        $pengumuman = pengumuman::where('userId', auth()->id())->with('data_rkp','data_tpk')->get();
         $data_rkp = data_rkp::where('userId', auth()->id())->get();
         $data_tpk = data_tpk::where('userId', auth()->id())->get();
-        
-        return view('perencanaan.pengumuman.index', compact('pengumuman','data_rkp','data_tpk'));
+
+        return view('perencanaan.pengumuman.index', compact('pengumuman', 'data_rkp', 'data_tpk'));
     }
 
     public function create()
     {
-        
+
         $simpanData = data_rkp::all();
-        
+
         return view('perencanaan.pengumuman.index', compact('simpanData'));
     }
 
     public function store(Request $request)
 {
     $request->validate([
-        'nama_kegiatan' => 'required|',
-        'cara_pengadaan' => 'required|',
-        'nama_tpk' => 'required|',
-        'tanggal' => 'required|',
+        'kegiatanId' => 'required',
+        'cara_pengadaan' => 'required',
+        'tpkId' => 'required',
+        'tanggal' => 'required',
     ]);
 
-    $ambil = data_rkp::where('nama_kegiatan', $request->nama_kegiatan)->first();
-    
-    if ($ambil) {
-        // Pisahkan volume dan satuan
-        $volumeExploded = explode(', ', $ambil->volume);
-        $volume = $volumeExploded[0] ?? '';
-        $satuan = $volumeExploded[1] ?? ''; // Pastikan satuan terdeteksi
-        
-        // Simpan data baru di tabel pengumuman
-        pengumuman::create(array_merge([
-            'nama_kegiatan' => $ambil->nama_kegiatan,
-            'jumlah_biaya' => $ambil->jumlah_biaya,
-            'cara_pengadaan' => $request->cara_pengadaan,
-            'volume' => $volume,
-            'satuan' => $satuan, // Menggunakan satuan dari hasil explode
-            'nama_tpk' => $request->nama_tpk,
-            'lokasi_kegiatan' => $ambil->lokasi_kegiatan,
-            'tanggal' => $request->tanggal,
-            'waktu_pelaksanaan' => $ambil->waktu_pelaksanaan,
-            'kegiatanId' => $ambil->id,
-        ], [
-            'userId' => auth()->id(), // Tambahkan userId ke data yang disimpan
-        ]));
+    pengumuman::create($request->merge(['userId' => auth()->id()])->all());
 
-        return redirect()->route('pengumuman.index')->with('success', 'Data berhasil disimpan!');
-    } else {
-        return redirect()->route('pengumuman.index')->with('error', 'Data nama tidak ditemukan di tabel simpan.');
-    }
+    return redirect()->route('pengumuman.index')->with('success', 'Data berhasil disimpan');
 }
 
-
-    public function show(pengumuman $pengumuman)
-    {
-        if ($pengumuman->userId !== auth()->id()) {
-            abort(403, 'Unauthorized access');
-        }
-
-        return view('perencanaan.pengumuman.index', compact('pengumuman'));
-    }
 
     public function edit($id)
     {
@@ -85,15 +51,15 @@ class pengumumanController extends Controller
             abort(403, 'Unauthorized access');
         }
 
-        return view('perencanaan.pengumuman.edit', compact('pengumuman','data_tpk','data_rkp'));
+        return view('perencanaan.pengumuman.edit', compact('pengumuman', 'data_tpk', 'data_rkp'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_kegiatan' => 'required|',
+            'kegiatanId' => 'required|',
             'cara_pengadaan' => 'required|',
-            'nama_tpk' => 'required|',
+            'tpkId' => 'required|',
             'tanggal' => 'required|',
         ]);
 

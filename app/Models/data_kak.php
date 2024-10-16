@@ -15,20 +15,18 @@ class data_kak extends Model
     public $timestamps = false;
 
     protected $fillable = [
-       'nama_kegiatan',
        'latar_belakang',
-       'sasaran_manfaat',
-       'cara_pengadaan',
-       'ketua_tpk',
-       'sekertaris_tpk',
-       'anggota_tpk',
-       'nama_kasi',
-       'jabatan_kasi',
-       'waktu_pelaksanaan',
-       'tanggal_mulai',
-       'tanggal_selesai',
        'kegiatanId',
-       'jumlah_biaya',
        'userId',
     ];
+
+    public function data_rkp()
+    {
+        return $this->belongsTo(data_rkp::class, 'kegiatanId');
+    }
+
+    public function jadwal()
+    {
+        return $this->belongsTo(jadwal::class, 'kegiatanId');
+    }
 }

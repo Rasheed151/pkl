@@ -11,26 +11,24 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::create('data_desa', function (Blueprint $table) {
-        $table->id();
-        $table->string('provinsi');
-        $table->string('kabupaten');
-        $table->string('kecamatan');
-        $table->string('desa');
-        $table->string('kode_desa',20);
-        $table->text('alamat_kantor');
+    Schema::create('village_data', function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->string('province');
+        $table->string('district'); // kabupaten -> district
+        $table->string('subdistrict'); // kecamatan -> subdistrict
+        $table->string('village');
+        $table->string('village_code',20);
+        $table->text('office_address');
         $table->string('email');
         $table->string('npwp');
-        $table->string('no_tahun_perpub_pjb');
-        $table->date('tanggal_perpub_pjb');
-        $table->string('no_pengesahan_dpa');
-        $table->date('tanggal_pengesahan_dpa');
-        $table->string('nama_kades');
-        $table->string('tahun_anggaran',25);
-        $table->foreignId ('userId'); // Updated column type
+        $table->string('pbj_decree_number'); // no_tahun_perpub_pjb -> pbj_decree_number
+        $table->date('pbj_decree_date'); // tanggal_perpub_pjb -> pbj_decree_date
+        $table->string('dpa_approval_number'); // no_pengesahan_dpa -> dpa_approval_number
+        $table->date('dpa_approval_date'); // tanggal_pengesahan_dpa -> dpa_approval_date
+        $table->string('village_head_name');
+        $table->string('fiscal_year',25);//tahun_anggaran -> fiscal_year
+        $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         $table->timestamps();
-
-        $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
     });
 }
     /**
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_desa');
+        Schema::dropIfExists('village_data');
     }
 };

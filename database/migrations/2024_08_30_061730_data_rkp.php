@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,28 +10,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_rkp', function (Blueprint $table) {
-            $table->id();
-            $table->string('bidang');
-            $table->string('sub_bidang');
-            $table->string('nama_kegiatan');
-            $table->string('lokasi_kegiatan');
-            $table->string('volume');
-            $table->string('sasaran_manfaat');
-            $table->string('tanggal_mulai');
-            $table->string('tanggal_selesai');
-            $table->integer('waktu_pelaksanaan');
-            $table->integer('jumlah_biaya');
-            $table->string('sumber_biaya');
-            $table->boolean('swakelola')->default(false); 
-            $table->boolean('kerjasama_desa')->default(false);
-            $table->boolean('pihak_ketiga')->default(false);
-            $table->string('rencana_pelaksana_kegiatan');
-            
-            $table->unsignedBigInteger('userId'); // Updated column type
+        Schema::create('rkp_data', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('field'); // Bidang
+            $table->string('sub_field'); // Sub Bidang
+            $table->string('activity_name'); // Nama Kegiatan
+            $table->string('activity_location'); // Lokasi Kegiatan
+            $table->string('volume'); // Volume
+            $table->string('benefit_target'); // Sasaran Manfaat
+            $table->string('start_date'); // Tanggal Mulai
+            $table->string('end_date'); // Tanggal Selesai
+            $table->integer('implementation_time'); // Waktu Pelaksanaan
+            $table->integer('total_cost'); // Jumlah Biaya
+            $table->string('funding_source'); // Sumber Biaya
+            $table->boolean('self_management')->default(false); // Swakelola
+            $table->boolean('village_cooperation')->default(false); // Kerjasama Desa
+            $table->boolean('third_party')->default(false); // Pihak Ketiga
+            $table->foreignId('officials_id')->constrained('officials_data')->onDelete('cascade');//relasi tabel officials_data 
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-    
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 
@@ -41,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_rkp');
+        Schema::dropIfExists('rkp_data');
     }
 };

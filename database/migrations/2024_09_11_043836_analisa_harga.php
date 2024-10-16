@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('analisa_harga', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama');
-            $table->string('kode');
-            $table->string('satuan');
-            $table->integer('koefisien');
-            $table->integer('harga_satuan');
-            $table->integer('jumlah_harga');
-            $table->string('jenis');
-            $table->string('kegiatanId');
-            $table->unsignedBigInteger('userId'); // Kegiatan Sebesar
-            $table->timestamps(); // Created at and updated at timestamps
+        Schema::create('price_analysis', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name'); // Nama
+            $table->string('code'); // Kode
+            $table->string('unit'); // Satuan
+            $table->integer('coefficient'); // Koefisien
+            $table->integer('unit_price'); // Harga Satuan
+            $table->integer('total_price'); // Jumlah Harga
+            $table->string('type'); // Jenis
 
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('rkp_id')->constrained('Schedule', 'rkp_id')->onDelete('cascade'); // Relasi ke tabel simpan
+            $table->timestamps(); // Created at and updated at timestamps
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('analisa_harga');
+        Schema::dropIfExists('price_analysis');
     }
 };

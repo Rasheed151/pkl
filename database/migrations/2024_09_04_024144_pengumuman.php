@@ -11,22 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_pengumuman', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama_kegiatan');
-            $table->integer('jumlah_biaya');
-            $table->string('cara_pengadaan');
-            $table->string('volume'); 
-            $table->string('satuan');
-            $table->string('nama_tpk');
-            $table->string('lokasi_kegiatan');
-            $table->date('tanggal');
-            $table->integer('waktu_pelaksanaan');
-            $table->string('kegiatanId');
-            $table->unsignedBigInteger('userId'); // Updated column type
+        Schema::create('announcement_data', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('procurement_method'); // Cara Pengadaan
+            $table->foreignId('tpk_id')->constrained('tpk_data')->onDelete('cascade'); // Relasi ke tabel simpan
+            $table->string('start_date'); // Tanggal Mulai
+            $table->string('end_date'); // Tanggal Selesai
+            $table->foreignId('rkp_id')->constrained('rkp_data')->onDelete('cascade'); // Relasi ke tabel simpan
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-    
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 
@@ -35,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_pengumuman');
+        Schema::dropIfExists('announcement_data');
     }
 };

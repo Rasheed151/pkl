@@ -16,16 +16,19 @@ class pengumuman extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'nama_kegiatan',
-        'jumlah_biaya',
-        'cara_pengadaan',
-        'volume',
-        'satuan',
-        'nama_tpk',
-        'lokasi_kegiatan',
-        'tanggal',
-        'waktu_pelaksanaan',
         'kegiatanId',
+        'cara_pengadaan',
+        'tpkId',
+        'tanggal',
         'userId',
     ];
+    public function data_rkp()
+    {
+        return $this->belongsTo(data_rkp::class, 'kegiatanId');
+    }
+
+    public function data_tpk()
+    {
+        return $this->belongsTo(data_tpk::class, 'tpkId');
+    }
 }

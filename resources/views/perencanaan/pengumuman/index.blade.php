@@ -48,12 +48,10 @@
                             <tr
                                 class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> nama_kegiatan}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> data_rkp -> nama_kegiatan}}</td>
                                 <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> cara_pengadaan}}</td>
-
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> lokasi_kegiatan }}</td>
-
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> nama_tpk}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> data_rkp -> lokasi_kegiatan }}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> data_tpk -> nama}}</td>
                                 <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> tanggal}}</td>
                                 <td class="px-4 py-10 text-center border-b border-gray-200 dark:border-gray-700"
                                     style="display: flex; justify-content: space-between;">
@@ -117,11 +115,11 @@
 
                                 <!-- Nama -->
                                 <div>
-                                    <label for="nama_kegiatan" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
-                                    <select name="nama_kegiatan" required
+                                    <label for="kegiatanId" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
+                                    <select name="kegiatanId" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($data_rkp as $data)
-                                        <option value="{{ $data->nama_kegiatan }}">{{ $data->nama_kegiatan }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama_kegiatan }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -140,11 +138,11 @@
                                 </div>
 
                                 <div>
-                                    <label for="nama_tpk" class="block text-sm font-medium text-gray-700">nama TPK</label>
-                                    <select name="nama_tpk" required
+                                    <label for="tpkId" class="block text-sm font-medium text-gray-700">nama TPK</label>
+                                    <select name="tpkId" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($data_tpk as $data)
-                                        <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -200,11 +198,11 @@
                         <form action="{{ route('pengumuman.show', $data->id) }}" method="get" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Nama Kegiatan</label>
-                                <p class="isi-lihat">{{ $data->nama_kegiatan }}</p>
+                                <p class="isi-lihat">{{ $data-> data_rkp -> nama_kegiatan }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Jumlah Biaya</label>
-                                <p class="isi-lihat">{{ $data->jumlah_biaya }}</p>
+                                <p class="isi-lihat">{{ $data-> data_rkp -> jumlah_biaya }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Cara Pengadaan</label>
@@ -212,19 +210,15 @@
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Volume</label>
-                                <p class="isi-lihat">{{ $data->volume }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label {{ $data->id }} class="form-label">Satuan</label>
-                                <p class="isi-lihat">{{ $data->satuan }}</p>
+                                <p class="isi-lihat">{{ $data-> data_rkp -> volume }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Nama TPK</label>
-                                <p class="isi-lihat">{{ $data->nama_tpk }}</p>
+                                <p class="isi-lihat">{{ $data-> data_tpk -> nama }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Lokasi Kegiatan</label>
-                                <p class="isi-lihat">{{ $data->lokasi_kegiatan }}</p>
+                                <p class="isi-lihat">{{ $data-> data_rkp -> lokasi_kegiatan }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Tanggal</label>

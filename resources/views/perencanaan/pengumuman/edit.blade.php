@@ -152,10 +152,10 @@
             @method('PUT')
 
             <div class="form-field">
-                <label for="nama_kegiatan">Nama Kegiatan</label>
-                <select name="nama_kegiatan" required>
+                <label for="kegiatanId">Nama Kegiatan</label>
+                <select name="kegiatanId" required>
                     @foreach ($data_rkp as $data)
-                    <option value="{{ $data->nama_kegiatan }}" {{ $data->nama_kegiatan == $pengumuman->nama_kegiatan ? 'selected' : '' }}>{{ $data->nama_kegiatan }}</option>
+                    <option value="{{ $data->id }}" {{ $data->nama_kegiatan == $pengumuman->data_rkp->nama_kegiatan ? 'selected' : '' }}>{{ $data->nama_kegiatan }}</option>
                     @endforeach
                 </select>
             </div>
@@ -170,10 +170,10 @@
             </div>
 
             <div class="form-field">
-                <label for="nama_tpk">Nama TPK</label>
-                <select name="nama_tpk" required>
+                <label for="tpkId">Nama TPK</label>
+                <select name="tpkId" required>
                     @foreach ($data_tpk as $data)
-                    <option value="{{ $data->nama }}" {{ $data->nama == $pengumuman->nama_tpk ? 'selected' : '' }}>{{ $data->nama }}</option>
+                    <option value="{{ $data->id }}" {{ $data->nama == $pengumuman->data_tpk->nama ? 'selected' : '' }}>{{ $data->nama }}</option>
                     @endforeach
                 </select>
             </div>

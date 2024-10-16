@@ -49,12 +49,11 @@
                             <tr
                                 class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> nama_kegiatan}}</td>
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> ketua_tpk}}</td>
-
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> tanggal_mulai}}</td>
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> waktu_pelaksanaan}}</td>
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> jumlah_biaya}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> data_rkp -> nama_kegiatan}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> ketuaTpk -> nama}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> data_rkp -> tanggal_mulai}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> data_rkp -> waktu_pelaksanaan}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> data_rkp -> jumlah_biaya}}</td>
                                 <td class="px-6 py-4 text-center border-b border-gray-200 dark:border-gray-700"
                                     style="display: flex; justify-content: space-between;">
                                     <button type="button"
@@ -117,11 +116,11 @@
 
                                 <!-- Nama -->
                                 <div>
-                                    <label for="nama_kegiatan" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
-                                    <select name="nama_kegiatan" required
+                                    <label for="kegiatanId" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
+                                    <select name="kegiatanId" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($pengumuman as $data)
-                                        <option value="{{ $data->nama_kegiatan }}">{{ $data->nama_kegiatan }}</option>
+                                        <option value="{{ $data->data_rkp->id }}">{{ $data->data_rkp->nama_kegiatan }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -131,7 +130,7 @@
                                     <select name="ketua_tpk" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($data_tpk as $data)
-                                        <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -141,7 +140,7 @@
                                     <select name="sekertaris_tpk" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($data_tpk as $data)
-                                        <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -151,7 +150,7 @@
                                     <select name="anggota_tpk" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($data_tpk as $data)
-                                        <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -161,7 +160,7 @@
                                     <select name="nama_kasi" required
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($data_aparat as $data)
-                                        <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -211,47 +210,47 @@
                         <form action="{{ route('jadwal.show', $data->id) }}" method="get" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Nama Kegiatan</label>
-                                <p class="isi-lihat">{{ $data->nama_kegiatan }}</p>
+                                <p class="isi-lihat">{{ $data->data_rkp->nama_kegiatan }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Ketua TPK</label>
-                                <p class="isi-lihat">{{ $data->ketua_tpk }}</p>
+                                <p class="isi-lihat">{{ $data->ketuaTpk ->nama }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Sekertaris TPK</label>
-                                <p class="isi-lihat">{{ $data->sekertaris_tpk }}</p>
+                                <p class="isi-lihat">{{ $data->sekertarisTpk ->nama }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Anggota TPK</label>
-                                <p class="isi-lihat">{{ $data->anggota_tpk }}</p>
+                                <p class="isi-lihat">{{ $data->anggotaTpk ->nama }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Waktu Pelaksanaan</label>
-                                <p class="isi-lihat">{{ $data->waktu_pelaksanaan }}</p>
+                                <p class="isi-lihat">{{ $data->data_rkp->waktu_pelaksanaan }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Tanggal Mulai</label>
-                                <p class="isi-lihat">{{ $data->tanggal_mulai }}</p>
+                                <p class="isi-lihat">{{ $data->data_rkp->tanggal_mulai }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Tanggal Selesai</label>
-                                <p class="isi-lihat">{{ $data->tanggal_selesai }}</p>
+                                <p class="isi-lihat">{{ $data->data_rkp->tanggal_selesai }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Jumlah Biaya</label>
-                                <p class="isi-lihat">{{ $data->jumlah_biaya }}</p>
+                                <p class="isi-lihat">{{ $data->data_rkp->jumlah_biaya }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Nama KASI</label>
-                                <p class="isi-lihat">{{ $data->nama_kasi }}</p>
+                                <p class="isi-lihat">{{ $data->dataAparat->nama }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Jabatan KASI</label>
-                                <p class="isi-lihat">{{ $data->jabatan_kasi }}</p>
+                                <p class="isi-lihat">{{ $data->dataAparat->jabatan }}</p>
                             </div>
                             <div class="mb-3">
                                 <label {{ $data->id }} class="form-label">Lokasi Kegiatan</label>
-                                <p class="isi-lihat">{{ $data->lokasi_kegiatan }}</p>
+                                <p class="isi-lihat">{{ $data->data_rkp->lokasi_kegiatan }}</p>
                             </div>
                         </form>
                     </div>

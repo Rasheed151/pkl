@@ -11,20 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_aparat', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('jenis_kelamin');
-            $table->string('tempat_tanggal_lahir');
+        Schema::create('officials_data', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('gender');
+            $table->string('birthplace_date');
             $table->string('nik', 20);
-            $table->text('alamat');
+            $table->text('addres`');
             $table->string('npwp');
-            $table->string('no_hp');
-            $table->string('jabatan');
-            $table->unsignedBigInteger('userId'); // Updated column type
+            $table->string('phone_number');
+            $table->string('position');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-    
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_aparat');
+        Schema::dropIfExists('officials_data');
     }
 };

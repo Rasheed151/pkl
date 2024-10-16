@@ -155,8 +155,8 @@
             <div class="form-field">
                 <label for="ketua_tpk">Ketua TPK</label>
                 <select name="ketua_tpk" required>
-                    @foreach ($data_tpk as $data)
-                    <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                @foreach ($data_tpk as $data)
+                    <option value="{{ $data->id }}" {{ $data->nama == $jadwal->ketuaTpk->nama ? 'selected' : '' }}>{{ $data->nama }}</option>
                     @endforeach
                 </select>
             </div>
@@ -164,8 +164,8 @@
             <div class="form-field">
                 <label for="sekertaris_tpk">Sekertaris TPK</label>
                 <select name="sekertaris_tpk" required>
-                    @foreach ($data_tpk as $data)
-                    <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                @foreach ($data_tpk as $data)
+                    <option value="{{ $data->id }}" {{ $data->nama == $jadwal->sekertarisTpk->nama ? 'selected' : '' }}>{{ $data->nama }}</option>
                     @endforeach
                 </select>
             </div>
@@ -173,8 +173,8 @@
             <div class="form-field">
                 <label for="anggota_tpk">Anggota TPK</label>
                 <select name="anggota_tpk" required>
-                    @foreach ($data_tpk as $data)
-                    <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                @foreach ($data_tpk as $data)
+                    <option value="{{ $data->id }}" {{ $data->nama == $jadwal->anggotaTpk->nama ? 'selected' : '' }}>{{ $data->nama }}</option>
                     @endforeach
                 </select>
             </div>
@@ -183,7 +183,7 @@
                 <label for="nama_kasi">Nama KASI</label>
                 <select name="nama_kasi" required>
                     @foreach ($data_aparat as $data)
-                    <option value="{{ $data->nama }}">{{ $data->nama }}</option>
+                    <option value="{{ $data->id }}" {{ $data->nama == $jadwal->dataAparat->nama ? 'selected' : '' }}>{{ $data->nama }}</option>
                     @endforeach
                 </select>
             </div>

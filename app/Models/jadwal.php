@@ -10,24 +10,44 @@ class jadwal extends Model
     use HasFactory;
 
     protected $table = 'jadwal';
-
-
     public $timestamps = false;
 
-
     protected $fillable = [
-        'nama_kegiatan',
         'ketua_tpk',
         'sekertaris_tpk',
         'anggota_tpk',
-        'waktu_pelaksanaan',
-        'tanggal_mulai',
-        'tanggal_selesai',
-        'jumlah_biaya',
         'nama_kasi',
-        'jabatan_kasi',
-        'lokasi_kegiatan',
         'kegiatanId',
         'userId',
     ];
+
+    public function data_rkp()
+    {
+        return $this->belongsTo(data_rkp::class, 'kegiatanId');
+    }
+
+    public function ketuaTpk()
+    {
+        return $this->belongsTo(data_tpk::class, 'ketua_tpk');
+    }
+
+    public function sekertarisTpk()
+    {
+        return $this->belongsTo(data_tpk::class, 'sekertaris_tpk');
+    }
+
+    public function anggotaTpk()
+    {
+        return $this->belongsTo(data_tpk::class, 'anggota_tpk');
+    }
+
+    public function dataAparat()
+    {
+        return $this->belongsTo(data_aparat::class, 'nama_kasi');
+    }
+
+    public function pengumuman()
+    {
+        return $this->belongsTo(pengumuman::class, 'kegiatanId');
+    }
 }

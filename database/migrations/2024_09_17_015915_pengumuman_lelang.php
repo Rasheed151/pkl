@@ -10,28 +10,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengumuman_lelang', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama_kegiatan');
-            $table->string('ketua_tpk');
-            $table->string('sekertaris_tpk');
-            $table->string('anggota_tpk');
-            $table->string('lokasi_kegiatan');
-            $table->string( 'bidang');
-            $table->integer('total_nilai_hps');
-            $table->string('waktu_pelaksanaan');
-            $table->string('waktu_pengumuman');
-            $table->string('waktu_pendaftaran');
-            $table->string('waktu_pemasukan');
-            $table->string('waktu_evaluasi');
-            $table->string('waktu_negosiasi');
-            $table->string('waktu_penepatan');
-            $table->string('kegiatanId');
-            $table->unsignedBigInteger('userId'); // Kegiatan Sebesar
+        Schema::create('auction_announcements', function (Blueprint $table) {
+            $table->bigIncrements('id'); // ID
+            $table->string('execution_time'); // Waktu Pelaksanaan
+            $table->string('announcement_time'); // Waktu Pengumuman
+            $table->string('registration_time'); // Waktu Pendaftaran
+            $table->string('submission_time'); // Waktu Pemasukan
+            $table->string('evaluation_time'); // Waktu Evaluasi
+            $table->string('negotiation_time'); // Waktu Negosiasi
+            $table->string('decision_time'); // Waktu Penetapan
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('rkp_id')->constrained('Schedule', 'rkp_id')->onDelete('cascade'); // Relasi ke tabel simpan
             $table->timestamps(); // Created at and updated at timestamps
-
-
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 
@@ -40,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengumuman_lelang');
+        Schema::dropIfExists('auction_announcements');
     }
 };

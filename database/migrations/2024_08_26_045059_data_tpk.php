@@ -11,21 +11,31 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_tpk', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('jenis_kelamin');
-            $table->string('tempat_tanggal_lahir');
-            $table->text('alamat');
-            $table->string('nik', 20);
-            $table->string('no_hp');
-            $table->string('no_sk_desa');
-            $table->date('tanggal_sk_desa');
-            $table->string('jabatan');
-            $table->unsignedBigInteger('userId'); // Updated column type
+        Schema::create('tpk_data', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('tpk_group_name'); // Column for the name of the TPK group
+            $table->string('head_name');
+            $table->string('head_gender');
+            $table->string('head_birthplace_date');
+            $table->text('head_address');
+            $table->string('head_nik', 20);
+            $table->string('head_phone_number');
+            $table->string('secretary_name');
+            $table->string('secretary_gender');
+            $table->string('secretary_birthplace_date');
+            $table->text('secretary_address');
+            $table->string('secretary_nik', 20);
+            $table->string('secretary_phone_number');
+            $table->string('member_name');
+            $table->string('member_gender');
+            $table->string('member_birthplace_date');
+            $table->text('member_address');
+            $table->string('member_nik', 20);
+            $table->string('member_phone_number');
+            $table->string('village_decree_number'); // 'no_sk_desa'
+            $table->date('village_decree_date');    // 'tanggal_sk_desa'
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-    
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 

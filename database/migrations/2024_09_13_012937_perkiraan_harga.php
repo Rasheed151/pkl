@@ -11,20 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perkiraan_harga', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama');
-            $table->string('spesifikasi');
-            $table->string( 'volume');
-            $table->string('satuan');
-            $table->integer('harga_satuan');
-            $table->integer('jumlah_harga');
-            
-            $table->string('kegiatanId');
-            $table->unsignedBigInteger('userId'); // Kegiatan Sebesar
-            $table->timestamps(); // Created at and updated at timestamps
+        Schema::create('price_estimate', function (Blueprint $table) {
+            $table->bigIncrements('id'); // ID
+            $table->string('name'); // Nama
+            $table->string('specification'); // Spesifikasi
+            $table->string('volume'); // Volume
+            $table->string('unit'); // Satuan
+            $table->integer('unit_price'); // Harga Satuan
+            $table->integer('total_price'); // Jumlah Harga
 
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('rkp_id')->constrained('Schedule', 'rkp_id')->onDelete('cascade'); // Relasi ke tabel simpan
+            $table->timestamps(); // Created at and updated at timestamps
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perkiraan_harga');
+        Schema::dropIfExists('price_estimate');
     }
 };

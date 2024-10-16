@@ -11,26 +11,13 @@ return new class extends Migration
      */ 
     public function up(): void
     {
-        Schema::create('data_kak', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama_kegiatan');
-            $table->text('latar_belakang');
-            $table->string('sasaran_manfaat');
-            $table->string('cara_pengadaan');
-            $table->string('ketua_tpk'); 
-            $table->string('sekertaris_tpk');
-            $table->string('anggota_tpk'); 
-            $table->string('nama_kasi');
-            $table->string('jabatan_kasi');
-            $table->integer('waktu_pelaksanaan'); 
-            $table->date('tanggal_mulai'); 
-            $table->date('tanggal_selesai'); 
-            $table->integer('jumlah_biaya');
-            $table->string('kegiatanId');
-            $table->unsignedBigInteger('userId'); // Kegiatan Sebesar
+        Schema::create('kak_data', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('background');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
+            $table->foreignId('rkp_id')->constrained('Schedule','rkp_id')->onDelete('cascade'); // Relasi ke tabel simpan
             $table->timestamps(); // Created at and updated at timestamps
 
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
         });
     }
 
@@ -39,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_kak');
+        Schema::dropIfExists('kak_data');
     }
 };

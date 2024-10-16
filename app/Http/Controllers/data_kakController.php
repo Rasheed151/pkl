@@ -26,39 +26,12 @@ class data_kakController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kegiatan' => 'required',
+            'kegiatanId' => 'required',
             'latar_belakang' => 'required',
         ]);
-    
-        // Ambil data 'jadwal' berdasarkan 'nama_kegiatan'
-        $ambil = jadwal::where('nama_kegiatan', $request->nama_kegiatan)->first();
-    
-        // Ambil data 'rkp' berdasarkan 'kegiatan_id' yang sesuai
-        $rkp = data_rkp::where('id', $ambil->kegiatanId)->first();
-        $sasaran_manfaat = optional($rkp)->sasaran_manfaat;
-    
-        $cara_pengadaan = $request->cara_pengadaan ?: 'Penyedia';
-    
-        // Simpan data
-        data_kak::create(array_merge([
-            'nama_kegiatan' => $ambil->nama_kegiatan,
-            'latar_belakang' => $request->latar_belakang,
-            'sasaran_manfaat' => $sasaran_manfaat,
-            'cara_pengadaan' => $cara_pengadaan,
-            'ketua_tpk' => $ambil->ketua_tpk,
-            'sekertaris_tpk' => $ambil->sekertaris_tpk,
-            'anggota_tpk' => $ambil->anggota_tpk,
-            'nama_kasi' => $ambil->nama_kasi,
-            'jabatan_kasi' => $ambil->jabatan_kasi,
-            'waktu_pelaksanaan' => $ambil->waktu_pelaksanaan,
-            'tanggal_mulai' => $ambil->tanggal_mulai,
-            'tanggal_selesai' => $ambil->tanggal_selesai,
-            'jumlah_biaya' => $ambil->jumlah_biaya,
-            'kegiatanId' => $ambil->kegiatanId,
-        ], [
-            'userId' => auth()->id(), // Tambahkan userId ke data yang disimpan
-        ]));
-    
+
+        data_kak::create($request->merge(['userId' => auth()->id()])->all());
+
         return redirect()->route('data_kak.index')
             ->with('success', 'Data umum created successfully.');
     }

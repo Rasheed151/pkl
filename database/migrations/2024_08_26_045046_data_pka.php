@@ -11,20 +11,13 @@ return new class extends Migration
      */
     public function up(): void 
     {
-        Schema::create('data_pka', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('tempat_tanggal_lahir');
-            $table->string('nik', 20);
-            $table->string('jabatan');
-            $table->string('no_hp');
-            $table->text('alamat');
-            $table->string('no_sk_kades');
-            $table->date('tanggal_sk_kades');
-            $table->unsignedBigInteger('userId'); // Updated column type
+        Schema::create('pka_data', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('officials_id')->constrained('officials_data')->onDelete('cascade');//relasi tabel officials_data 
+            $table->string('village_head_decree_number'); // 'no_sk_kades'
+            $table->date('village_head_decree_date');    // 'tanggal_sk_kades'
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-    
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade'); // Add foreign key constraint
 
         });
     }
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_pka');
+        Schema::dropIfExists('pka_data');
     }
 };
