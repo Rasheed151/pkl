@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\announcement;
 
-class tesController extends Controller
+class chooseController extends Controller
 {
     public function index()
 {
@@ -23,35 +23,34 @@ public function price_analysis()
     $kegiatan = announcement::where('user_id', auth()->id())->get(); // Misal data jadwal disimpan di tabel 'jadwal'
 
     // Kirim data ke view
-    return view('persiapan.analisa.pilih', compact('kegiatan'));
+    return view('preparation.price_analysis.choose', compact('kegiatan'));
 }
 
 
 public function price_estimate()
 {
     // Ambil data kegiatan dari database
-    $kegiatan = announcement::where('userId', auth()->id())->get(); // Misal data jadwal disimpan di tabel 'jadwal'
+    $kegiatan = announcement::where('user_id', auth()->id())->get(); // Misal data jadwal disimpan di tabel 'jadwal'
 
     // Kirim data ke view
-    return view('persiapan.perkiraan.pilih', compact('kegiatan'));
+    return view('preparation.price_estimate.choose', compact('kegiatan'));
 }
 
-public function pengumuman()
+public function auction()
 {
     // Ambil data kegiatan dari database
-    $kegiatan = jadwal::where('userId', auth()->id())->get(); // Misal data jadwal disimpan di tabel 'jadwal'
+    $kegiatan = announcement::where('user_id', auth()->id())->get(); // Misal data jadwal disimpan di tabel 'jadwal'
 
     // Kirim data ke view
-    return view('pelaksanaan.lelang.pilih', compact('kegiatan'));
+    return view('implementation.auction.choose', compact('kegiatan'));
 }
 
-public function penyerahan()
+public function submission()
 {
     // Ambil data kegiatan dari database
-    $kegiatan = jadwal::where('userId', auth()->id())->get(); // Misal data jadwal disimpan di tabel 'jadwal'
+    $kegiatan = announcement::where('user_id', auth()->id())->get(); // Misal data jadwal disimpan di tabel 'jadwal'
 
     // Kirim data ke view
-    return view('penyerahan.penyedia.pilih', compact('kegiatan'));
+    return view('submission.supplier.choose', compact('kegiatan'));
 }
-
 }

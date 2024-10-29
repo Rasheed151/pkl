@@ -59,69 +59,68 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 //Content Route
-use App\Http\Controllers\jadwalController;
-use App\Http\Controllers\data_kakController;
-use App\Http\Controllers\data_pkaController;
-use App\Http\Controllers\data_rkpController;
-use App\Http\Controllers\data_tpkController;
-use App\Http\Controllers\data_desaController;
-use App\Http\Controllers\pengumumanController;
-use App\Http\Controllers\data_aparatController;
-use App\Http\Controllers\data_penyediaController;
+use App\Http\Controllers\kak_dataController;
+use App\Http\Controllers\pka_dataController;
+use App\Http\Controllers\rkp_dataController;
+use App\Http\Controllers\tpk_dataController;
+use App\Http\Controllers\village_dataController;
+use App\Http\Controllers\announcementController;
+use App\Http\Controllers\officials_dataController;
+use App\Http\Controllers\supplier_dataController;
 use App\Http\Controllers\bamusrenbangdesController;
-use App\Http\Controllers\data_teknisController;
-use App\Http\Controllers\data_analisaController;
-use App\Http\Controllers\data_perkiraanController;
-use App\Http\Controllers\pengumuman_lelangController;
-use App\Http\Controllers\penyerahanController;
+use App\Http\Controllers\technical_specificationsController;
+use App\Http\Controllers\price_analysisController;
+use App\Http\Controllers\price_estimateController;
+use App\Http\Controllers\auction_announcementsController;
+use App\Http\Controllers\submissionController;
 use App\Http\Controllers\PDFController;
-use App\Http\Controllers\tesController;
+use App\Http\Controllers\chooseController;
 use App\Http\Controllers\DateController;
 
 // Group route yang dilindungi oleh middleware auth
 Route::group(['middleware' => 'auth'], function () {
     
-    // CRUD data, semua dilindungi auth middleware
-    Route::resource('/home', data_desaController::class);
-    Route::resource('/data_aparat', data_aparatController::class);
-    Route::resource('/data_pka', data_pkaController::class);
-    Route::resource('/data_tpk', data_tpkController::class);
-    Route::resource('/data_penyedia', data_penyediaController::class);
+    // CRUD data General Dan Perencanaan
+    Route::resource('/home', village_dataController::class);
+    Route::resource('/officials_data', officials_dataController::class);
+    Route::resource('/pka_data', pka_dataController::class);
+    Route::resource('/tpk_data', tpk_dataController::class);
+    Route::resource('/supplier_data', supplier_dataController::class);
     Route::resource('/bamusrenbangdes', bamusrenbangdesController::class);
+    Route::resource('/rkp_data', rkp_dataController::class);
+    Route::resource('/announcement', announcementController::class);
     
     // Rute untuk PDF, dilindungi oleh auth dan akses tertentu
     Route::get('/generate-pdf/{id}', [PDFController::class, 'preview'])->name('make.pdf');
     Route::get('/rkp-pdf/{userId}', [PDFController::class, 'rkp'])->name('rkp.pdf');
-    Route::get('/pengumuman-pdf/{userId}', [PDFController::class, 'pengumuman'])->name('pengumuman.pdf');
-    Route::get('/jadwal-pdf/{id}', [PDFController::class, 'jadwal'])->name('jadwal.pdf');
+    Route::get('/pengumuman-pdf/{userId}', [PDFController::class, 'pengumuman'])->name('announcement.pdf');
+    Route::get('/jadwal-pdf/{id}', [PDFController::class, 'jadwal'])->name('Schedule.pdf');
     Route::get('/kak-pdf/{id}', [PDFController::class, 'kak'])->name('kak.pdf');
-    Route::get('/lelang-pdf/{id}', [PDFController::class, 'pengumuman_lelang'])->name('pengumuman_lelang.pdf');
+    Route::get('/lelang-pdf/{id}', [PDFController::class, 'auction_announcements'])->name('auction_announcements.pdf');
 
     // Rute tambahan untuk view static
-    Route::get('/persiapan', function () {
-        return view('persiapan.index');
+    Route::get('/preparation', function () {
+        return view('preparation.index');
     });
-    
-    Route::get('/pelaksanaan', function () {
-        return view('pelaksanaan.index');
-    });
-    
-    // CRUD Jadwal, Pengumuman, dan Data lainnya
-    Route::resource('/jadwal', jadwalController::class);
-    Route::resource('/data_rkp', data_rkpController::class);
-    Route::resource('/pengumuman', pengumumanController::class);
-    Route::resource('/data_kak', data_kakController::class);
-    Route::resource('/teknis_pilih', tesController::class);
-    Route::resource('/data_teknis', data_teknisController::class);
-    Route::resource('/data_analisa', data_analisaController::class);
-    Route::resource('/data_perkiraan', data_perkiraanController::class);
-    Route::resource('/pengumuman_lelang', pengumuman_lelangController::class);
-    Route::resource('/penyerahan-penyedia', penyerahanController::class);
 
-    // Route tambahan dengan nama yang lebih deskriptif
-    Route::get('/analisa_pilih', [tesController::class, 'coba'])->name('coba');
-    Route::get('/perkiraan_pilih', [tesController::class, 'bisa'])->name('bisa');
-    Route::get('/lelang_pilih', [tesController::class, 'pengumuman'])->name('pengumuman');
-    Route::get('/penyerahan', [tesController::class, 'penyerahan'])->name('penyerahan');
+    Route::get('/implementation', function () {
+        return view('implementation.index');
+    });
+    
+    // CRUD Data Persiapan
+    Route::get('/Schedule', [announcementController::class,'scheduleindex'])->name('Schedule.index');
+    Route::resource('/kak_data', kak_dataController::class);
+    Route::resource('/technical_specifications', technical_specificationsController::class);
+    Route::resource('/price_analysis', price_analysisController::class);
+    Route::resource('/price_estimate', price_estimateController::class);
+    Route::resource('/auction_announcements', auction_announcementsController::class);
+    Route::resource('/submission_supplier', submissionController::class);
+    
+    // Route Pemilihan
+    Route::resource('/technical_specifications_choose', chooseController::class);
+    Route::get('/price_analysis_choose', [chooseController::class, 'price_analysis'])->name('price_analysis');
+    Route::get('/price_estimate_choose', [chooseController::class, 'price_estimate'])->name('price_estimate');
+    Route::get('/auction_choose', [chooseController::class, 'auction'])->name('auction');
+    Route::get('/submission', [chooseController::class, 'submission'])->name('submission');
 });
 

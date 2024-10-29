@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Title -->
-    <title>Klipaa | Pengadaan Barang Dan Jasa</title>
+    <title>Klipaa | Penyedia</title>
 
     <!-- Logo -->
     <link rel="shortcut icon" href="svg/L-Klipaa.svg" type="image/x-icon">
@@ -29,7 +29,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Css -->
-    <link rel="stylesheet" href="{{asset('css/dashboard-users/data-aparat.css')}}">
+    <link rel="stylesheet" href="css/dashboard-users/data-penyedia.css">
 
 </head>
 
@@ -42,10 +42,6 @@
         <div class="logo_item">
             <i class="bx bx-menu" id="sidebarOpen"></i>
             <img src="svg/L-KLipaa.svg" alt=""></i>Klipaa Indonesia
-        </div>
-
-        <div class="search_bar">
-            <input type="text" placeholder="Cari disini.." />
         </div>
 
         <div class="navbar_content">
@@ -62,8 +58,46 @@
                 window.location.href = '/home';
             }
         </script>
+
     </nav>
     <!-- End | Navbar -->
+
+
+
+    <!-- Modal Log Out -->
+    <div id="logout-modal" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="logout-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah yakin anda ingin log
+                        out?</h3>
+                    <button onclick="redirectToLogout()" type="button"
+                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                        Log Out
+                    </button>
+                    <button data-modal-hide="logout-modal" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End | Modal Log Out -->
 
 
 
@@ -242,53 +276,60 @@
         <!-- End | Menu Content -->
     </nav>
     <!-- End | Sidebar -->
-    @yield('content')
 
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 mt-96">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-                <!-- Logo and Copyright -->
-                <div
-                    class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 text-center md:text-left">
-                    <img src="svg/L-Klipaa.svg" alt="Logo Klipaa" class="h-10">
-                    <p class="text-sm">© 2024 Klipaa. All rights reserved.</p>
-                </div>
 
-                <!-- Navigation Links -->
-                <nav class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-center">
-                    <a href="#" class="text-sm hover:text-blue-400 transition-colors duration-300">Beranda</a>
-                    <a href="#" class="text-sm hover:text-blue-400 transition-colors duration-300">Tentang</a>
-                    <a href="#" class="text-sm hover:text-blue-400 transition-colors duration-300">Layanan</a>
-                    <a href="#" class="text-sm hover:text-blue-400 transition-colors duration-300">Kontak</a>
-                </nav>
+    <br>
+@yield('content')
 
-                <!-- Social Media Links -->
-                <div class="flex space-x-6">
-                    <a href="#" aria-label="Facebook" class="hover:text-blue-500 transition-colors duration-300">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" aria-label="Instagram" class="hover:text-blue-400 transition-colors duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" aria-label="Youtube" class="hover:text-pink-500 transition-colors duration-300">
-                        <i class="fab fa-youtube"></i>
-                    </a>
+<br>
+
+
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                    <!-- Logo and Copyright -->
+                    <div
+                        class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 text-center md:text-left">
+                        <img src="svg/L-Klipaa.svg" alt="Logo Klipaa" class="h-10">
+                        <p class="text-sm">© 2024 Klipaa. All rights reserved.</p>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <nav class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-center">
+                        <a href="/" class="text-sm hover:text-blue-400 transition-colors duration-300">Beranda</a>
+                        <a href="/tentang"
+                            class="text-sm hover:text-blue-400 transition-colors duration-300">Tentang</a>
+                        <a href="/layanan"
+                            class="text-sm hover:text-blue-400 transition-colors duration-300">Layanan</a>
+                        <a href="/kontak" class="text-sm hover:text-blue-400 transition-colors duration-300">Kontak</a>
+                    </nav>
+
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-6">
+                        <a href="https://www.facebook.com/officialklipaa/?locale=id_ID" aria-label="Facebook"
+                            class="hover:text-blue-500 transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/klipaaindonesia/" aria-label="Instagram"
+                            class="hover:text-blue-400 transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UChaZgad46wEsMrrMZpCUc7g
+                        " aria-label="Youtube" class="hover:text-pink-500 transition-colors duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- End | Footer -->
+        </footer>
+        <!-- End | Footer -->
 
 
 
     </div>
-    <!-- End | Card 1 -->
-
-
-
-    </main>
     <!-- End | Main Content -->
 
 
@@ -298,11 +339,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
-    <!-- JavaScript | Connect -->
-    <script src="js/dashboard-users/data-aparat.js"></script>
-
-
-
+    <!-- Fungsi | Mengkoneksikan Ke Javascript -->
+    <script src="js/dashboard-users/data-penyedia.js"></script>
 </body>
 
 </html>
+
+

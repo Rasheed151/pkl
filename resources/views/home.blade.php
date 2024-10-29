@@ -39,12 +39,12 @@
       <!-- End | Profile Foto -->
 
       <!-- Profile Deskripsi -->
-       @foreach ($data_desa as $desa)
+       @foreach ($village_data as $village)
        
        @endforeach
       <div class="text-center p-6">
-        <h2 id="userName" class="text-2xl font-bold">{{$desa->desa}}</h2>
-        <p id="userDescription" class="text-gray-600 mt-2" style="margin-bottom: 10px;">Selamat Datang Desa {{$desa -> desa}}</p>
+        <h2 id="userName" class="text-2xl font-bold">{{$village->village}}</h2>
+        <p id="userDescription" class="text-gray-600 mt-2" style="margin-bottom: 10px;">Selamat Datang Desa {{$village -> village}}</p>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal"
           style="transition: 0.5s;">
           Edit Profile
@@ -54,7 +54,7 @@
 
       <!-- Data Profile  -->
       <div class="overflow-x-auto">
-    @forelse ($data_desa as $data)
+    @forelse ($village_data as $data)
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -65,27 +65,27 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nama Desa</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->desa}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->village}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Kecamatan</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->kecamatan}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->subdistrict}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Kabupaten</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->kabupaten}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->district}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Provinsi</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->provinsi}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->province}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Kode Desa</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->kode_desa}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->village_code}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Alamat Kantor Desa</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->alamat_kantor}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->office_address}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Email</td>
@@ -97,27 +97,27 @@
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nomor & Tahun Perbup Tentang PBJ</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->no_tahun_perpub_pjb}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->pbj_decree_number}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Tanggal Perbup Tentang PBJ</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->tanggal_perpub_pjb}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->pbj_decree_date}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">No. Keputusan Kades tentang DPA</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->no_pengesahan_dpa}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->dpa_approval_number}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Tanggal Keputusan Kades DPA</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->tanggal_pengesahan_dpa}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->dpa_approval_date}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nama Kepala Desa</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->nama_kades}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->village_head_name}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Tahun Anggaran</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->tahun_anggaran}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$data->fiscal_year}}</td>
                 </tr>
             </tbody>
         </table>
@@ -148,28 +148,28 @@
           @csrf
           @method('PUT')
           <div class="mb-3">
-            <label for="desa" class="form-label">Nama Desa</label>
-            <input type="text" class="form-control" id="desa" name="desa" value="{{ $data->desa }}" required>
+            <label for="village" class="form-label">Nama Desa</label>
+            <input type="text" class="form-control" id="village" name="village" value="{{ $data->village }}" required>
           </div>
           <div class="mb-3">
-            <label for="kecamatan" class="form-label">Kecamatan</label>
-            <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="{{ $data->kecamatan }}" required>
+            <label for="subdistrict" class="form-label">Kecamatan</label>
+            <input type="text" class="form-control" id="subdistrict" name="subdistrict" value="{{ $data->subdistrict }}" required>
           </div>
           <div class="mb-3">
-            <label for="kabupaten" class="form-label">Kabupaten</label>
-            <input type="text" class="form-control" id="kabupaten" name="kabupaten" value="{{ $data->kabupaten }}" required>
+            <label for="district" class="form-label">Kabupaten</label>
+            <input type="text" class="form-control" id="district" name="district" value="{{ $data->district }}" required>
           </div>
           <div class="mb-3">
-            <label for="provinsi" class="form-label">Provinsi</label>
-            <input type="text" class="form-control" id="provinsi" name="provinsi" value="{{ $data->provinsi }}" required>
+            <label for="province" class="form-label">Provinsi</label>
+            <input type="text" class="form-control" id="province" name="province" value="{{ $data->province }}" required>
           </div>
           <div class="mb-3">
-            <label for="kode_desa" class="form-label">Kode Desa</label>
-            <input type="text" class="form-control" id="kode_desa" name="kode_desa" value="{{ $data->kode_desa }}" required>
+            <label for="village_code" class="form-label">Kode Desa</label>
+            <input type="text" class="form-control" id="village_code" name="village_code" value="{{ $data->village_code }}" required>
           </div>
           <div class="mb-3">
-            <label for="alamat_kantor" class="form-label">Alamat Kantor</label>
-            <input type="text" class="form-control" id="alamat_kantor" name="alamat_kantor" value="{{ $data->alamat_kantor }}" required>
+            <label for="office_address" class="form-label">Alamat Kantor</label>
+            <input type="text" class="form-control" id="office_address" name="office_address" value="{{ $data->office_address }}" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -180,28 +180,28 @@
             <input type="text" class="form-control" id="npwp" name="npwp" value="{{ $data->npwp }}" required>
           </div>
           <div class="mb-3">
-            <label for="no_tahun_perpub_pjb" class="form-label">Nomor & Tahun Perbup Tentang PBJ</label>
-            <input type="text" class="form-control" id="no_tahun_perpub_pjb" name="no_tahun_perpub_pjb" value="{{ $data->no_tahun_perpub_pjb }}" required>
+            <label for="pbj_decree_number" class="form-label">Nomor & Tahun Perbup Tentang PBJ</label>
+            <input type="text" class="form-control" id="pbj_decree_number" name="pbj_decree_number" value="{{ $data->pbj_decree_number }}" required>
           </div>
           <div class="mb-3">
-            <label for="tanggal_perpub_pjb" class="form-label">Tanggal Perbup Tentang PBJ</label> 
-            <input type="date" class="form-control" id="tanggal_perpub_pjb" name="tanggal_perpub_pjb" value="{{ $data->tanggal_perpub_pjb }}" required>
+            <label for="pbj_decree_date" class="form-label">Tanggal Perbup Tentang PBJ</label> 
+            <input type="date" class="form-control" id="pbj_decree_date" name="pbj_decree_date" value="{{ $data->pbj_decree_date }}" required>
           </div>
           <div class="mb-3">
-            <label for="no_pengesahan_dpa" class="form-label">No. Keputusan Kades tentang DPA</label>
-            <input type="text" class="form-control" id="no_pengesahan_dpa" name="no_pengesahan_dpa" value="{{ $data->no_pengesahan_dpa }}" required>
+            <label for="dpa_approval_number" class="form-label">No. Keputusan Kades tentang DPA</label>
+            <input type="text" class="form-control" id="dpa_approval_number" name="dpa_approval_number" value="{{ $data->dpa_approval_number }}" required>
           </div>
           <div class="mb-3">
-            <label for="tanggal_pengesahan_dpa" class="form-label">Tanggal Keputusan Kades DPA</label>
-            <input type="date" class="form-control" id="tanggal_pengesahan_dpa" name="tanggal_pengesahan_dpa" value="{{ $data->tanggal_pengesahan_dpa }}" required>
+            <label for="dpa_approval_date" class="form-label">Tanggal Keputusan Kades DPA</label>
+            <input type="date" class="form-control" id="dpa_approval_date" name="dpa_approval_date" value="{{ $data->dpa_approval_date }}" required>
           </div>
           <div class="mb-3">
-            <label for="nama_kades" class="form-label">Nama Kepala Desa</label>
-            <input type="text" class="form-control" id="nama_kades" name="nama_kades" value="{{ $data->nama_kades }}" required>
+            <label for="village_head_name" class="form-label">Nama Kepala Desa</label>
+            <input type="text" class="form-control" id="village_head_name" name="village_head_name" value="{{ $data->village_head_name }}" required>
           </div>
           <div class="mb-3">
-            <label for="tahun_anggaran" class="form-label">Tahun Anggaran</label>
-            <input type="text" class="form-control" id="tahun_anggaran" name="tahun_anggaran" value="{{ $data->tahun_anggaran }}" required>
+            <label for="fiscal_year" class="form-label">Tahun Anggaran</label>
+            <input type="text" class="form-control" id="fiscal_year" name="fiscal_year" value="{{ $data->fiscal_year }}" required>
           </div>
           <div class="mb-3">
 
