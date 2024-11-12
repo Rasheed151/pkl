@@ -156,7 +156,7 @@
                                         </div>
                                         <div>
                                             <label for="head_phone_number" class="block text-sm font-medium text-gray-700">Nomor Handphone Ketua TPK</label>
-                                            <input type="text" name="head_phone_number" placeholder="Masukkan No HP" value="+62"
+                                            <input type="number" name="head_phone_number" placeholder="Masukkan No HP" value="62"
                                                 class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         </div>
                                     </div>
@@ -202,7 +202,7 @@
                                         </div>
                                         <div>
                                             <label for="secretary_phone_number" class="block text-sm font-medium text-gray-700">Nomor Handphone Sekretaris TPK</label>
-                                            <input type="text" name="secretary_phone_number" placeholder="Masukkan No HP" value="+62"
+                                            <input type="number" name="secretary_phone_number" placeholder="Masukkan No HP" value="62"
                                                 class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         </div>
                                     </div>
@@ -248,7 +248,7 @@
                                         </div>
                                         <div>
                                             <label for="member_phone_number" class="block text-sm font-medium text-gray-700">Nomor Handphone Anggota TPK</label>
-                                            <input type="text" name="member_phone_number" placeholder="Masukkan No HP" value="+62"
+                                            <input type="number" name="member_phone_number" placeholder="Masukkan No HP" value="62"
                                                 class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         </div>
                                     </div>
@@ -332,109 +332,109 @@
                     </div>
                     <div class="modal-body">
 
-                    <form action="{{ route('tpk_data.show', $data->id) }}" method="get" enctype="multipart/form-data" class="space-y-6">
+                        <form action="{{ route('tpk_data.show', $data->id) }}" method="get" enctype="multipart/form-data" class="space-y-6">
 
-<div class="mb-3">
-    <label class="block text-sm font-medium text-gray-700">Nama Kelompok</label>
-    <p class="mt-1 text-lg text-gray-900">{{ $data->tpk_group_name }}</p>
-</div>
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium text-gray-700">Nama Kelompok</label>
+                                <p class="mt-1 text-lg text-gray-900">{{ $data->tpk_group_name }}</p>
+                            </div>
 
-<div class="border rounded-lg p-4 bg-gray-50">
-    <h5 class="text-lg font-semibold text-blue-600 mb-3">Data Ketua TPK</h5>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Nama Ketua TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->head_name }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Jenis Kelamin Ketua TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->head_gender }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Tempat Lahir Ketua TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->head_birthplace_date }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">NIK Ketua TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->head_nik }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Alamat Ketua TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->head_address }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Nomor Handphone Ketua TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->head_phone_number }}</p>
-    </div>
-</div>
+                            <div class="border rounded-lg p-4 bg-gray-50">
+                                <h5 class="text-lg font-semibold text-blue-600 mb-3">Data Ketua TPK</h5>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Nama Ketua TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->head_name }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Jenis Kelamin Ketua TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->head_gender }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Tempat Lahir Ketua TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->head_birthplace_date }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">NIK Ketua TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->head_nik }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Alamat Ketua TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->head_address }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Nomor Handphone Ketua TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->head_phone_number }}</p>
+                                </div>
+                            </div>
 
-<div class="border rounded-lg p-4 bg-gray-50">
-    <h5 class="text-lg font-semibold text-blue-600 mb-3">Data Sekretaris TPK</h5>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Nama Sekretaris TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->secretary_name }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Jenis Kelamin Sekretaris TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->secretary_gender }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Tempat Lahir Sekretaris TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->secretary_birthplace_date }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">NIK Sekretaris TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->secretary_nik }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Alamat Sekretaris TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->secretary_address }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Nomor Handphone Sekretaris TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->secretary_phone_number }}</p>
-    </div>
-</div>
+                            <div class="border rounded-lg p-4 bg-gray-50">
+                                <h5 class="text-lg font-semibold text-blue-600 mb-3">Data Sekretaris TPK</h5>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Nama Sekretaris TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->secretary_name }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Jenis Kelamin Sekretaris TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->secretary_gender }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Tempat Lahir Sekretaris TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->secretary_birthplace_date }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">NIK Sekretaris TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->secretary_nik }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Alamat Sekretaris TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->secretary_address }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Nomor Handphone Sekretaris TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->secretary_phone_number }}</p>
+                                </div>
+                            </div>
 
-<div class="border rounded-lg p-4 bg-gray-50">
-    <h5 class="text-lg font-semibold text-blue-600 mb-3">Data Anggota TPK</h5>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Nama Anggota TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->member_name }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Jenis Kelamin Anggota TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->member_gender }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Tempat Lahir Anggota TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->member_birthplace_date }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">NIK Anggota TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->member_nik }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Alamat Anggota TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->member_address }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Nomor Handphone Anggota TPK</label>
-        <p class="mt-1 text-gray-900">{{ $data->member_phone_number }}</p>
-    </div>
-</div>
+                            <div class="border rounded-lg p-4 bg-gray-50">
+                                <h5 class="text-lg font-semibold text-blue-600 mb-3">Data Anggota TPK</h5>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Nama Anggota TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->member_name }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Jenis Kelamin Anggota TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->member_gender }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Tempat Lahir Anggota TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->member_birthplace_date }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">NIK Anggota TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->member_nik }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Alamat Anggota TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->member_address }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Nomor Handphone Anggota TPK</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->member_phone_number }}</p>
+                                </div>
+                            </div>
 
-<div class="border rounded-lg p-4 bg-gray-50">
-    <h5 class="text-lg font-semibold text-blue-600 mb-3">Informasi SK Desa</h5>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Nomor SK Desa</label>
-        <p class="mt-1 text-gray-900">{{ $data->village_decree_number }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="block text-sm font-medium text-gray-700">Tanggal SK Desa</label>
-        <p class="mt-1 text-gray-900">{{ $data->village_decree_date }}</p>
-    </div>
-</div>
-</form>
+                            <div class="border rounded-lg p-4 bg-gray-50">
+                                <h5 class="text-lg font-semibold text-blue-600 mb-3">Informasi SK Desa</h5>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Nomor SK Desa</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->village_decree_number }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-gray-700">Tanggal SK Desa</label>
+                                    <p class="mt-1 text-gray-900">{{ $data->village_decree_date }}</p>
+                                </div>
+                            </div>
+                        </form>
 
                     </div>
                     <div class="modal-footer">

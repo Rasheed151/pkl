@@ -168,7 +168,7 @@
                                 <!-- No. Hp -->
                                 <div>
                                     <label for="phone_number" class="block text-sm font-medium text-gray-700">No. Hp</label>
-                                    <input type="text" id="phone_number" name="phone_number" inputmode="numeric" placeholder="Masukkan Nomor Hp" value="+62"
+                                    <input type="number" id="phone_number" name="phone_number" inputmode="numeric" placeholder="Masukkan Nomor Hp" value="62"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
