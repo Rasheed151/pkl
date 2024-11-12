@@ -29,4 +29,9 @@ class price_analysis extends Model
     {
         return $this->belongsTo(technical_specifications::class, 'technical_id');
     }
+
+    public function rkp_data()
+    {
+        return $this->belongsTo(rkp_data::class, 'rkp_id');
+    }
 }

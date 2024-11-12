@@ -1,97 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Surat 3</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #fff;
-        font-family: "Times New Roman", Times, serif;
-        font-size: 12pt;
-      }
 
-      .page {
-        width: 29.7cm;
-        height: 21cm;
-        padding: 2cm;
-        margin: 0 auto;
-        border: 1px solid black;
-        border-radius: 5px;
-        background: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surat 3</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    @page {
+      size: A4 landscape;
+      /* Set ukuran kertas landscape */
+      margin: 20mm;
+      /* Margin halaman */
+    }
 
-      .content {
-        width: 100%;
-      }
+    body {
+      font-family: Arial, sans-serif;
+      /* Font yang digunakan */
+      background: white;
+      /* Latar belakang putih */
+      color: black;
+      /* Warna teks hitam */
+    }
 
-      .table-container {
-        text-align: center;
-        margin-top: 10px;
-      }
+    .page {
+      width: 100%;
+      /* Lebar halaman */
+    }
 
-      table {
-        width: 100%;
-        font-size: 12px;
-        text-align: center;
-        border-collapse: collapse;
-        table-layout: auto; /* Membuat tabel menyesuaikan lebar berdasarkan konten */
-      }
+    .content {
+      padding: 20px;
+      /* Ruang di dalam konten */
+      box-sizing: border-box;
+      /* Menghitung padding dalam ukuran total */
+    }
 
-      th, td {
-        border: 1px solid black;
-        padding: 8px;
-        white-space: nowrap; /* Mencegah teks terpotong menjadi beberapa baris */
-      }
+    .text-center {
+    text-align: center; /* Pusatkan teks */
+    font-size: 18px; /* Ukuran font */
+    font-weight: bold; /* Tebalkan font */
+    margin-bottom: 20px; /* Jarak bawah */
+}
 
-      @page {
-        size: A4 potrait;
-        margin: 20mm;
-      }
+    .table-container {
+      margin-top: 20px;
+      /* Jarak atas tabel */
+    }
 
-      @media print {
-        body, .page {
-          margin: 20mm;
-          border: none;
-          width: 100%;
-          height: 100%;
-          page-break-after: always;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <div class="content">
-        <!-- Table -->
-        <div class="table-container">
-          <table class="table table-bordered border-dark">
-            <thead>
-              <tr>
-                <th>Nama Kegiatan</th>
-                <th>Tim Pelaksana Kegiatan</th>
-                <th>Waktu Pelaksanaan</th>
-                <th>Nilai Pekerjaan</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{$jadwal->nama_kegiatan}}</td>
-                <td>{{$jadwal->ketua_tpk}},{{$jadwal->sekertaris_tpk}},{{$jadwal->anggota_tpk}}</td>
-                <td>Jumlah waktu {{$jadwal->waktu_pelaksanaan}}, {{$jadwal->tanggal_mulai}} Sampai Dengan {{$jadwal->tanggal_selesai}} Tahun {{$desa->tahun_anggaran}}</td>
-                <td>{{$jadwal->jumlah_biaya}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    .table {
+      width: 100%;
+      /* Lebar tabel 100% */
+      border-collapse: collapse;
+      /* Gabungkan batas tabel */
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid #000;
+      /* Garis batas sel */
+      padding: 10px;
+      /* Ruang dalam sel */
+      text-align: left;
+      /* Rata kiri teks */
+    }
+
+    .table th {
+      background-color: #f0f0f0;
+      /* Latar belakang header tabel */
+      font-weight: bold;
+      /* Tebalkan font header tabel */
+    }
+
+    .table td {
+      vertical-align: top;
+      /* Rata atas untuk isi tabel */
+    }
+
+    .signature {
+    text-align: right; /* Rata kanan teks tanda tangan */
+    margin-top: 30px; /* Jarak atas sebelum tanda tangan */
+}
+
+.signature p {
+    margin: 0; /* Hapus margin paragraf */
+}
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <p class="text-center">
+        KEPALA SEKSI/KEPALA URUSAN {{$announcement -> rkp_data -> activity_name}}<br />
+        DESA: {{ $village_data->village }} <br />
+
+      </p>
+      <!-- Table -->
+      <div class="table-container">
+        <table class="table table-bordered border-dark">
+          <thead>
+            <tr>
+              <th>Nama Kegiatan</th>
+              <th>Tim Pelaksana Kegiatan</th>
+              <th>Waktu Pelaksanaan</th>
+              <th>Nilai Pekerjaan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{$announcement->rkp_data->activity_name}}</td>
+              <td>{{$announcement->tpk_data->head_name}},{{$announcement->tpk_data->secretary_name}},{{$announcement->tpk_data->member_name}}</td>
+              <td>Jumlah waktu {{$announcement->rkp_data->implementation_time}}, {{$announcement->rkp_data->start_date}} Sampai Dengan {{$announcement->rkp_data->end_date}} Tahun {{$village_data->fiscal_year}}</td>
+              <td>{{$announcement->rkp_data->total_cost}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </body>
+    <div class="signature">
+                <p>KEPALA SEKSI/KEPALA URUSAN {{$announcement -> rkp_data -> activity_name}}</p>
+                <p>Desa {{$village_data->village}}</p>
+                <p>Selaku</p>
+                <p>Pelaksana Kegiatan Anggaran</p>
+                <br>
+                <br>
+                <br>
+                <p>tanda tangan</p>
+                <strong>{{ $announcement->rkp_data->officials_data->name }}</strong>
+            </div>
+  </div>
+</body>
+
 </html>

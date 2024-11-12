@@ -75,7 +75,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
-                                    <a href="{{ route('make.pdf', $data->id) }}"
+                                    <a href="{{ route('bamusrenbangdes.pdf', $data->id) }}"
                                         class=" mx-2 text-yellow-600 dark:text-yellow-500 hover:text-yellow-700 dark:hover:text-yellow-400"
                                         title="print Data">
                                         <i class="fas fa-print"></i>
@@ -107,72 +107,72 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content bg-white shadow-2xl rounded-xl">
                     <div class="modal-header border-b border-gray-200 py-4 px-6">
-                        <h5 class="modal-title text-2xl font-bold text-gray-800" id="staticModalLabel">Tambah Data  Bamusrenbangdes Desa
+                        <h5 class="modal-title text-2xl font-bold text-gray-800" id="staticModalLabel">Tambah Data Bamusrenbangdes Desa
                         </h5>
                         <button type="button" class="btn-close text-gray-400 hover:text-gray-600" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-6">
-                        <form action="{{ route('bamusrenbangdes.store') }}" method="POST">
+                        <form id="dataForm" action="{{ route('bamusrenbangdes.store') }}" method="POST">
                             @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label for="date" class="block text-sm font-medium text-gray-700">Tanggal</label>
-                                    <input type="date" name="date" required placeholder="Masukkan tanggal"
+                                    <input type="date" name="date" placeholder="Masukkan tanggal"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <div>
                                     <label for="time" class="block text-sm font-medium text-gray-700">Jam</label>
-                                    <input type="time" name="time" required placeholder="Masukkan jam"
+                                    <input type="time" name="time" placeholder="Masukkan jam"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <div>
                                     <label for="place" class="block text-sm font-medium text-gray-700">Tempat</label>
-                                    <input type="text" name="place" required placeholder="Masukkan tempat"
+                                    <input type="text" name="place" placeholder="Masukkan tempat"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <div>
                                     <label for="activity_discussion" class="block text-sm font-medium text-gray-700">Bahas Kegiatan</label>
-                                    <textarea name="activity_discussion" required placeholder="Masukkan bahas kegiatan"
+                                    <textarea name="activity_discussion" placeholder="Masukkan bahas kegiatan"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                                 </div>
 
                                 <div>
                                     <label for="discussion_material" class="block text-sm font-medium text-gray-700">Materi Pembahasan</label>
-                                    <textarea name="discussion_material" required placeholder="Masukkan materi pembahasan"
+                                    <textarea name="discussion_material" placeholder="Masukkan materi pembahasan"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                                 </div>
 
                                 <div>
                                     <label for="bpd_leader" class="block text-sm font-medium text-gray-700">Ketua BPD</label>
-                                    <input type="text" name="bpd_leader" required placeholder="Masukkan nama ketua BPD"
+                                    <input type="text" name="bpd_leader" placeholder="Masukkan nama ketua BPD"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <div>
                                     <label for="community_representative" class="block text-sm font-medium text-gray-700">Wakil Masyarakat</label>
-                                    <input type="text" name="community_representative" required placeholder="Masukkan nama wakil masyarakat"
+                                    <input type="text" name="community_representative" placeholder="Masukkan nama wakil masyarakat"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <div>
                                     <label for="meeting_leader" class="block text-sm font-medium text-gray-700">Pimpinan Rapat</label>
-                                    <input type="text" name="meeting_leader" required placeholder="Masukkan nama pimpinan rapat"
+                                    <input type="text" name="meeting_leader" placeholder="Masukkan nama pimpinan rapat"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <div>
                                     <label for="note" class="block text-sm font-medium text-gray-700">Notulen</label>
-                                    <input type="text" name="note" required placeholder="Masukkan nama notulen"
+                                    <input type="text" name="note" placeholder="Masukkan nama notulen"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <div>
                                     <label for="final_agreement" class="block text-sm font-medium text-gray-700">Kesepakatan Akhir</label>
-                                    <textarea name="final_agreement" required placeholder="Masukkan kesepakatan akhir"
+                                    <textarea name="final_agreement" placeholder="Masukkan kesepakatan akhir"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                                 </div>
 
@@ -180,22 +180,46 @@
                                 <div id="resource_person-container">
                                     <label for="resource_person" class="block text-sm font-medium text-gray-700">Narasumber</label>
                                     <div class="flex">
-                                        <input type="text" name="resource_person[]" required placeholder=" nama narasumber"
+                                        <input type="text" name="resource_person[]" placeholder=" nama narasumber"
                                             class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" style="margin-right: 10px;">
                                         <h6 style="margin-right: 10px; margin-top: 25px;">Dari</h6>
-                                        <input type="text" name="from[]" required placeholder="asal narasumber"
+                                        <input type="text" name="from[]" placeholder="asal narasumber"
                                             class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         <button type="button" onclick="addresource_person()" class="ml-2 bg-blue-500 text-white px-3 py-2 rounded-md">+</button>
                                     </div>
                                 </div>
                             </div>
-
+                            <p id="errorMessage" class="text-red-500 mt-2 hidden">Harap lengkapi data terlebih dahulu!</p>
                             <div class="modal-footer border-t border-gray-200 py-4 px-6">
                                 <button type="submit" class="btn btn-primary bg-blue-500 text-white hover:bg-blue-600">Simpan</button>
                                 <button type="button" class="btn btn-secondary text-gray-700 bg-gray-200 hover:bg-gray-300"
                                     data-bs-dismiss="modal">Tutup</button>
                             </div>
                         </form>
+                        <script>
+                            document.getElementById("dataForm").addEventListener("submit", function(event) {
+                                // Ambil semua input dan select dalam form
+                                const inputs = this.querySelectorAll("input, select, textarea");
+                                let allFilled = true;
+
+                                // Periksa apakah ada field yang kosong
+                                inputs.forEach(input => {
+                                    if (input.value === "") {
+                                        allFilled = false;
+                                    }
+                                });
+
+                                // Jika ada field yang kosong, cegah submit dan tampilkan pesan
+                                if (!allFilled) {
+                                    event.preventDefault();
+                                    document.getElementById("errorMessage").classList.remove("hidden");
+
+                                    setTimeout(() => {
+                                        errorMessage.classList.add("hidden");
+                                    }, 3000); // 3000 ms = 3 detik
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

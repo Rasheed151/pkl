@@ -110,7 +110,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-6">
-                        <form action="{{ route('rkp_data.store') }}" method="POST">
+                        <form id="dataForm" action="{{ route('rkp_data.store') }}" method="POST">
                             @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- Dropdown Bidang Kegiatan -->
@@ -129,14 +129,14 @@
                                 <!-- Sub Bidang -->
                                 <div>
                                     <label for="sub_field" class="block text-sm font-medium text-gray-700">Sub Bidang</label>
-                                    <input type="text" name="sub_field" required placeholder="Masukkan Sub Bidang"
+                                    <input type="text" name="sub_field" placeholder="Masukkan Sub Bidang"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <!-- Nama Kegiatan -->
                                 <div>
                                     <label for="activity_name" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
-                                    <input type="text" name="activity_name" required placeholder="Masukkan Nama Kegiatan"
+                                    <input type="text" name="activity_name" placeholder="Masukkan Nama Kegiatan"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
@@ -148,38 +148,38 @@
                                 <!-- Lokasi Kegiatan -->
                                 <div>
                                     <label for="activity_location" class="block text-sm font-medium text-gray-700">Lokasi Kegiatan</label>
-                                    <textarea name="activity_location" required placeholder="Masukkan Lokasi Kegiatan"
+                                    <textarea name="activity_location" placeholder="Masukkan Lokasi Kegiatan"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
                                 </div>
 
                                 <!-- Sasaran Manfaat -->
                                 <div>
                                     <label for="benefit_target" class="block text-sm font-medium text-gray-700">Sasaran Manfaat</label>
-                                    <input type="text" name="benefit_target" required placeholder="Masukkan Sasaran Manfaat"
+                                    <input type="text" name="benefit_target" placeholder="Masukkan Sasaran Manfaat"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <!-- Tanggal Awal dan Akhir -->
                                 <div>
                                     <label for="start_date" class="block text-sm font-medium text-gray-700">Tanggal Dimulai</label>
-                                    <input type="date" name="start_date" required
+                                    <input type="date" name="start_date"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
                                 <div>
                                     <label for="end_date" class="block text-sm font-medium text-gray-700">Tanggal Selesai</label>
-                                    <input type="date" name="end_date" required
+                                    <input type="date" name="end_date"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
                                 <!-- Jumlah dan Sumber Biaya -->
                                 <div>
                                     <label for="total_cost" class="block text-sm font-medium text-gray-700">Jumlah Biaya</label>
-                                    <input type="text" name="total_cost" required placeholder="Masukkan Jumlah Biaya"
+                                    <input type="text" name="total_cost" placeholder="Masukkan Jumlah Biaya"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
                                 <div>
                                     <label for="funding_source" class="block text-sm font-medium text-gray-700">Sumber Biaya</label>
-                                    <input type="text" name="funding_source" required placeholder="Masukkan Sumber Biaya"
+                                    <input type="text" name="funding_source" placeholder="Masukkan Sumber Biaya"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
 
@@ -202,7 +202,7 @@
                                 <!-- Rencana Pelaksana Kegiatan -->
                                 <div>
                                     <label for="officials_id" class="block text-sm font-medium text-gray-700">Rencana Pelaksana Kegiatan</label>
-                                    <select name="officials_id" required
+                                    <select name="officials_id"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                         @foreach ($officials_data as $data)
                                         <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -211,13 +211,37 @@
                                 </div>
 
                             </div>
-
+                            <p id="errorMessage" class="text-red-500 mt-2 hidden">Harap lengkapi data terlebih dahulu!</p>
                             <div class="modal-footer border-t border-gray-200 py-4 px-6">
                                 <button type="submit" class="btn btn-primary bg-blue-500 text-white hover:bg-blue-600">Simpan</button>
                                 <button type="button" class="btn btn-secondary text-gray-700 bg-gray-200 hover:bg-gray-300"
                                     data-bs-dismiss="modal">Tutup</button>
                             </div>
                         </form>
+                        <script>
+                            document.getElementById("dataForm").addEventListener("submit", function(event) {
+                                // Ambil semua input dan select dalam form
+                                const inputs = this.querySelectorAll("input, select, textarea");
+                                let allFilled = true;
+
+                                // Periksa apakah ada field yang kosong
+                                inputs.forEach(input => {
+                                    if (input.value === "") {
+                                        allFilled = false;
+                                    }
+                                });
+
+                                // Jika ada field yang kosong, cegah submit dan tampilkan pesan
+                                if (!allFilled) {
+                                    event.preventDefault();
+                                    document.getElementById("errorMessage").classList.remove("hidden");
+
+                                    setTimeout(() => {
+                                        errorMessage.classList.add("hidden");
+                                    }, 3000); // 3000 ms = 3 detik
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -311,11 +335,11 @@
         @endforeach
 
         <script>
-    function updateVolumeFields() {
-        const field = document.getElementById('field').value;
-        const volumeFields = document.getElementById('volume-fields');
+            function updateVolumeFields() {
+                const field = document.getElementById('field').value;
+                const volumeFields = document.getElementById('volume-fields');
 
-        if (field === 'Pemerintahan Desa') {
+                if (field === 'Pemerintahan Desa') {
                     volumeFields.innerHTML = `
                 <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
                 <input type="text" name="volume" placeholder="Berapa Lama Kegiatan Berlangsung(Bulan)"
@@ -330,30 +354,30 @@
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                  <input type="hidden" id="unit" name="unit" value="Meter">
             `;
-                volumeFields.classList.remove('hidden');
-                } else if(field === 'Pembinaan Kemasyarakatan'){
+                    volumeFields.classList.remove('hidden');
+                } else if (field === 'Pembinaan Kemasyarakatan') {
                     volumeFields.innerHTML = `
                 <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
                 <input type="text" name="volume" placeholder="Jumlah Dari Permbinaan(paket)"
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                  <input type="hidden" id="unit" name="unit" value="Paket">
             `;
-            volumeFields.classList.remove('hidden');
-                }else{
+                    volumeFields.classList.remove('hidden');
+                } else {
                     volumeFields.innerHTML = `
                 <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
                 <input type="text" name="volume" placeholder="Jumlah Dari Perberdayaan (Unit)"
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                  <input type="hidden" id="unit" name="unit" value="Unit">
             `;
-            volumeFields.classList.remove('hidden');
+                    volumeFields.classList.remove('hidden');
                 }
-            
 
-        // Display the volume fields section
-        volumeFields.classList.remove('hidden');
-    }
-</script>
+
+                // Display the volume fields section
+                volumeFields.classList.remove('hidden');
+            }
+        </script>
 
 
 

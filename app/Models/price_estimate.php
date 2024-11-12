@@ -25,5 +25,11 @@ class price_estimate extends Model
             'rkp_id',
     ];
 
+    public function rkp_data()
+    {
+        return $this->belongsTo(rkp_data::class, 'rkp_id');
+    }
+
             
 }
+

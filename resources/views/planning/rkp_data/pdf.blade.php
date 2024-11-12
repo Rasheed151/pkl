@@ -107,7 +107,7 @@
             RANCANGAN RENCANA KERJA PEMERINTAH DESA (RKP-DESA) <br> TAHUN: {{ now()->year }}
           </p>
           <p style="text-align: justify; font-size: 11px; ">
-            DESA: {{ $desa->desa }} <br> KECAMATAN: {{ $desa->kecamatan }} <br> KABUPATEN: {{ $desa->kabupaten }} <br> PROVINSI: {{ $desa->provinsi }} <br>
+            DESA: {{ $village_data->village }} <br> KECAMATAN: {{ $village_data->subdistrict }} <br> KABUPATEN: {{ $village_data->district }} <br> PROVINSI: {{ $village_data->province }} <br>
           </p>
             
           <!-- Table -->
@@ -138,22 +138,22 @@
                 @php $no = 1; @endphp
                 @php $noa = 1; @endphp
                 @php $nob = 1; @endphp
-                @foreach($rkp_desa as $data)
+                @foreach($rkp_data as $data)
                 <tr align="center">
                   <td>{{ $no++ }}</td>
-                  <td>{{ $data->bidang }}</td>
-                  <td>{{ $data->sub_bidang }}</td>
-                  <td>{{ $data->nama_kegiatan }}</td>
-                  <td>{{ $data->lokasi_kegiatan }}</td>
+                  <td>{{ $data->field }}</td>
+                  <td>{{ $data->sub_field }}</td>
+                  <td>{{ $data->activity_name }}</td>
+                  <td>{{ $data->activity_location }}</td>
                   <td>{{ $data->volume }}</td>
-                  <td>{{ $data->sasaran_manfaat }}</td>
-                  <td>{{ $data->waktu_pelaksanaan }}</td>
-                  <td>{{ number_format($data->jumlah_biaya, 0, ',', '.') }}</td>
-                  <td>{{ $data->sumber_biaya }}</td>
-                  <td>{{ $data->swakelola ? 'Iya' : ' Tidak' }}</td>
-                  <td>{{ $data->kerjasama_desa ? 'Iya' : ' Tidak' }}</td>
-                  <td>{{ $data->pihak_ketiga ? 'Iya' : ' Tidak' }}</td>
-                  <td>{{ $data->rencana_pelaksana_kegiatan }}</td>
+                  <td>{{ $data->benefit_target }}</td>
+                  <td>{{ $data->implementation_time }}</td>
+                  <td>{{ number_format($data->total_cost, 0, ',', '.') }}</td>
+                  <td>{{ $data->funding_source }}</td>
+                  <td>{{ $data->self_management ? 'Iya' : ' Tidak' }}</td>
+                  <td>{{ $data->village_cooperation ? 'Iya' : ' Tidak' }}</td>
+                  <td>{{ $data->third_party ? 'Iya' : ' Tidak' }}</td>
+                  <td>{{ $data->officials_data->name }}</td>
                 </tr>
                 @endforeach
               </tbody>

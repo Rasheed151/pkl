@@ -91,12 +91,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/announcement', announcementController::class);
     
     // Rute untuk PDF, dilindungi oleh auth dan akses tertentu
-    Route::get('/generate-pdf/{id}', [PDFController::class, 'preview'])->name('make.pdf');
+    Route::get('/generate-pdf/{id}', [PDFController::class, 'bamusrenbangdes'])->name('bamusrenbangdes.pdf');
     Route::get('/rkp-pdf/{userId}', [PDFController::class, 'rkp'])->name('rkp.pdf');
-    Route::get('/pengumuman-pdf/{userId}', [PDFController::class, 'pengumuman'])->name('announcement.pdf');
-    Route::get('/jadwal-pdf/{id}', [PDFController::class, 'jadwal'])->name('Schedule.pdf');
+    Route::get('/pengumuman-pdf/{userId}', [PDFController::class, 'announcement'])->name('announcement.pdf');
+    Route::get('/jadwal-pdf/{id}', [PDFController::class, 'Schedule'])->name('Schedule.pdf');
     Route::get('/kak-pdf/{id}', [PDFController::class, 'kak'])->name('kak.pdf');
-    Route::get('/lelang-pdf/{id}', [PDFController::class, 'auction_announcements'])->name('auction_announcements.pdf');
+    Route::get('/technical_specifications-pdf/{rkp_id}', [PDFController::class, 'technical_specifications'])->name('technical_specifications.pdf');
+    Route::get('/price_analysis-pdf/{rkp_id}', [PDFController::class, 'price_analysis'])->name('price_analysis.pdf');
+    Route::get('/price_estimate-pdf/{rkp_id}', [PDFController::class, 'price_estimate'])->name('price_estimate.pdf');
+    Route::get('/auction_announcements-pdf/{id}/{rkp_id}', [PDFController::class, 'auction_announcements'])->name('auction_announcements.pdf');
 
     // Rute tambahan untuk view static
     Route::get('/preparation', function () {
@@ -122,5 +125,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/price_estimate_choose', [chooseController::class, 'price_estimate'])->name('price_estimate');
     Route::get('/auction_choose', [chooseController::class, 'auction'])->name('auction');
     Route::get('/submission', [chooseController::class, 'submission'])->name('submission');
+
+
+    //Preview Data Akhir
+    Route::get('/bamusrenbangdes/preview/{id}', [PDFController::class, 'previewBamusrenbangdes'])->name('bamusrenbangdes.preview');
 });
 

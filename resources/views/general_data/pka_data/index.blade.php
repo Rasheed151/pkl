@@ -104,7 +104,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-6">
-                        <form action="{{ route('pka_data.store') }}" method="POST">
+                        <form id="dataForm" action="{{ route('pka_data.store') }}" method="POST">
                             @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
@@ -131,12 +131,37 @@
 
 
                             </div>
+                            <p id="errorMessage" class="text-red-500 mt-2 hidden">Harap lengkapi data terlebih dahulu!</p>
                             <div class="modal-footer border-t border-gray-200 py-4 px-6">
                                 <button type="button" class="btn btn-secondary text-gray-700 bg-gray-200 hover:bg-gray-300"
                                     data-bs-dismiss="modal">Tutup</button>
                                 <button type="submit" class="btn btn-primary bg-blue-500 text-white hover:bg-blue-600">Simpan</button>
                             </div>
                         </form>
+                        <script>
+                            document.getElementById("dataForm").addEventListener("submit", function(event) {
+                                // Ambil semua input dan select dalam form
+                                const inputs = this.querySelectorAll("input, select");
+                                let allFilled = true;
+
+                                // Periksa apakah ada field yang kosong
+                                inputs.forEach(input => {
+                                    if (input.value === "") {
+                                        allFilled = false;
+                                    }
+                                });
+
+                                // Jika ada field yang kosong, cegah submit dan tampilkan pesan
+                                if (!allFilled) {
+                                    event.preventDefault();
+                                    document.getElementById("errorMessage").classList.remove("hidden");
+
+                                    setTimeout(() => {
+                                        errorMessage.classList.add("hidden");
+                                    }, 3000); // 3000 ms = 3 detik
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

@@ -72,7 +72,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
-                                    <a href="{{ route('auction_announcements.pdf', $data->id) }}"
+                                    <a href="{{ route('auction_announcements.pdf', ['id' => $data->id, 'rkp_id' => $data->rkp_id]) }}"
                                         class=" mx-2 text-yellow-600 dark:text-yellow-500 hover:text-yellow-700 dark:hover:text-yellow-400"
                                         title="print Data">
                                         <i class="fas fa-print"></i>
@@ -110,12 +110,12 @@
                         <button type="button" class="btn-close text-gray-400 hover:text-gray-600" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-6">
-                        <form action="{{ route('auction_announcements.store') }}" method="POST">
+                        <form id="dataForm" action="{{ route('auction_announcements.store') }}" method="POST">
                             @csrf
 
                             <div>
                                 <label for="rkp_id" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
-                                <select name="rkp_id" required
+                                <select name="rkp_id"
                                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     @foreach ($rkp_data as $data)
                                     <option value="{{ $data->id }}">{{ $data->activity_name }}</option>
@@ -129,15 +129,15 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_announcement" class="block text-sm font-medium text-gray-700">Tanggal Pengumuman</label>
-                                        <input type="date" id="date_announcement" name="date_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="date" id="date_announcement" name="date_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="time_announcement" class="block text-sm font-medium text-gray-700">Waktu Pengumuman</label>
-                                        <input type="time" id="time_announcement" name="time_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="time" id="time_announcement" name="time_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="place_announcement" class="block text-sm font-medium text-gray-700">Tempat Pengumuman</label>
-                                        <input type="text" id="place_announcement" name="place_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="text" id="place_announcement" name="place_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                 </div>
                             </fieldset>
@@ -148,15 +148,15 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_registration" class="block text-sm font-medium text-gray-700">Tanggal Pendaftaran</label>
-                                        <input type="date" id="date_registration" name="date_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="date" id="date_registration" name="date_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="time_registration" class="block text-sm font-medium text-gray-700">Waktu Pendaftaran</label>
-                                        <input type="time" id="time_registration" name="time_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="time" id="time_registration" name="time_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="place_registration" class="block text-sm font-medium text-gray-700">Tempat Pendaftaran</label>
-                                        <input type="text" id="place_registration" name="place_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="text" id="place_registration" name="place_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                 </div>
                             </fieldset>
@@ -167,15 +167,15 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_income" class="block text-sm font-medium text-gray-700">Tanggal Pemasukan</label>
-                                        <input type="date" id="date_income" name="date_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="date" id="date_income" name="date_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="time_income" class="block text-sm font-medium text-gray-700">Waktu Pemasukan</label>
-                                        <input type="time" id="time_income" name="time_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="time" id="time_income" name="time_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="place_income" class="block text-sm font-medium text-gray-700">Tempat Pemasukan</label>
-                                        <input type="text" id="place_income" name="place_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="text" id="place_income" name="place_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                 </div>
                             </fieldset>
@@ -186,15 +186,15 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_evaluation" class="block text-sm font-medium text-gray-700">Tanggal Evaluasi</label>
-                                        <input type="date" id="date_evaluation" name="date_evaluation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="date" id="date_evaluation" name="date_evaluation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="time_evaluation" class="block text-sm font-medium text-gray-700">Waktu Evaluasi</label>
-                                        <input type="time" id="time_evaluation" name="time_evaluation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="time" id="time_evaluation" name="time_evaluation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="place_evaluation" class="block text-sm font-medium text-gray-700">Tempat Evaluasi</label>
-                                        <input type="text" id="place_evaluation" name="place_evaluation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="text" id="place_evaluation" name="place_evaluation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                 </div>
                             </fieldset>
@@ -205,15 +205,15 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_negotiation" class="block text-sm font-medium text-gray-700">Tanggal Negosiasi</label>
-                                        <input type="date" id="date_negotiation" name="date_negotiation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="date" id="date_negotiation" name="date_negotiation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="time_negotiation" class="block text-sm font-medium text-gray-700">Waktu Negosiasi</label>
-                                        <input type="time" id="time_negotiation" name="time_negotiation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="time" id="time_negotiation" name="time_negotiation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="place_negotiation" class="block text-sm font-medium text-gray-700">Tempat Negosiasi</label>
-                                        <input type="text" id="place_negotiation" name="place_negotiation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="text" id="place_negotiation" name="place_negotiation" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                 </div>
                             </fieldset>
@@ -223,29 +223,52 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_placement" class="block text-sm font-medium text-gray-700">Tanggal penepatan</label>
-                                        <input type="date" id="date_placement" name="date_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="date" id="date_placement" name="date_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="time_placement" class="block text-sm font-medium text-gray-700">Waktu penepatan</label>
-                                        <input type="time" id="time_placement" name="time_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="time" id="time_placement" name="time_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
                                         <label for="place_placement" class="block text-sm font-medium text-gray-700">Tempat penepatan</label>
-                                        <input type="text" id="place_placement" name="place_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                        <input type="text" id="place_placement" name="place_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                 </div>
                             </fieldset>
-
+                            <p id="errorMessage" class="text-red-500 mt-2 hidden">Harap lengkapi data terlebih dahulu!</p>
                             <!-- Submit Button -->
                             <div class="flex justify-between mt-6">
-    <button type="button" class="btn btn-secondary text-gray-700 bg-gray-200 hover:bg-gray-300"
-    data-bs-dismiss="modal">Tutup</button>
-    <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        Simpan Data
-    </button>
-</div>
-
+                                <button type="button" class="btn btn-secondary text-gray-700 bg-gray-200 hover:bg-gray-300"
+                                    data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    Simpan Data
+                                </button>
+                            </div>
                         </form>
+                        <script>
+                            document.getElementById("dataForm").addEventListener("submit", function(event) {
+                                // Ambil semua input dan select dalam form
+                                const inputs = this.querySelectorAll("input, select, textarea");
+                                let allFilled = true;
+
+                                // Periksa apakah ada field yang kosong
+                                inputs.forEach(input => {
+                                    if (input.value === "") {
+                                        allFilled = false;
+                                    }
+                                });
+
+                                // Jika ada field yang kosong, cegah submit dan tampilkan pesan
+                                if (!allFilled) {
+                                    event.preventDefault();
+                                    document.getElementById("errorMessage").classList.remove("hidden");
+
+                                    setTimeout(() => {
+                                        errorMessage.classList.add("hidden");
+                                    }, 3000); // 3000 ms = 3 detik
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -297,7 +320,7 @@
                                 <label class="form-label">Bidang</label>
                                 <p class="isi-lihat">{{ $data->rkp_data->field }}</p>
                             </div>
-                          
+
                             <div class="mb-3">
                                 <label class="form-label">Waktu Pelaksanaan</label>
                                 <p class="isi-lihat">{{ $data->rkp_data->implementation_time }}</p>
