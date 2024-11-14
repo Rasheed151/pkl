@@ -61,9 +61,9 @@
                 @csrf
                 <div class="space-y-6">
                     <div>
-                        <label for="email" class="text-gray-800 text-sm mb-2 block">{{ __('Email Address') }}</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-customBlue" placeholder="Masukkan email Anda" required autofocus>
-                        @error('email')
+                        <label for="name" class="text-gray-800 text-sm mb-2 block">{{ __('Username') }}</label>
+                        <input id="name" type="text" name="name" value="{{ old('name') }}" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-customBlue" placeholder="Masukkan name Anda" required autofocus>
+                        @error('name')
                         <span class="text-red-500" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
