@@ -31,6 +31,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('12200820'),
             ],
 
+            [
+                'name' => 'sangataSelatan',
+                'email' => 'sangataSelatan@klipaa.id',
+                'password' => Hash::make('klipaaIndonesia'),
+            ],
+
         ]);
     }
 }
