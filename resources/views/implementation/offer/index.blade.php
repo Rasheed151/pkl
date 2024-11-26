@@ -177,7 +177,7 @@
                                 </div>
                             </fieldset>
                             <div>
-                                <label for="information" class="block text-sm font-medium text-gray-700">Keterangan(Opsional)</label>
+                                <label for="autoResize" class="block text-sm font-medium text-gray-700">Keterangan(Opsional)</label>
                                 <textarea name="information" placeholder="Masukkan Keterangan"
                                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm resize-none min-h-[80px] max-h-[500px] overflow-y-auto"
                                     id="autoResize"></textarea>
@@ -194,25 +194,28 @@
                         </form>
                         <script>
                             document.getElementById("dataForm").addEventListener("submit", function(event) {
-                                // Ambil semua input dan select dalam form
-                                const inputs = this.querySelectorAll("input, select, textarea");
+                                // Seleksi elemen input, select, dan textarea kecuali ID 'autoResize'
+                                const inputs = this.querySelectorAll("input, select, textarea:not(#autoResize)");
                                 let allFilled = true;
 
-                                // Periksa apakah ada field yang kosong
+                                // Periksa apakah ada field kosong
                                 inputs.forEach(input => {
-                                    if (input.value === "") {
+                                    console.log(`Memeriksa field ${input.name} dengan nilai: "${input.value.trim()}"`);
+                                    if (input.value.trim() === "") {
                                         allFilled = false;
                                     }
                                 });
 
                                 // Jika ada field yang kosong, cegah submit dan tampilkan pesan
                                 if (!allFilled) {
-                                    event.preventDefault();
-                                    document.getElementById("errorMessage").classList.remove("hidden");
+                                    event.preventDefault(); // Mencegah pengiriman form
+                                    const errorMessage = document.getElementById("errorMessage");
+                                    errorMessage.classList.remove("hidden");
 
+                                    // Sembunyikan pesan setelah 3 detik
                                     setTimeout(() => {
                                         errorMessage.classList.add("hidden");
-                                    }, 3000); // 3000 ms = 3 detik
+                                    }, 3000);
                                 }
                             });
                         </script>
