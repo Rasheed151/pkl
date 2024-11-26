@@ -86,8 +86,8 @@
                                     <label for="rkp_id" class="block text-sm font-medium text-gray-700">Kegiatan Yang Dipilih</label>
                                     <select name="rkp_id"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                        @foreach ($rkp_data as $data)
-                                        <option value="{{ $data->id }}">{{ $data->activity_name }}</option>
+                                        @foreach ($announcement as $data)
+                                        <option value="{{ $data->rkp_id }}">{{ $data->rkp_data->activity_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -222,3 +222,4 @@
     });
 </script>
 @endsection
+

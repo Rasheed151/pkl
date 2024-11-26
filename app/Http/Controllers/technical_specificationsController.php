@@ -17,14 +17,14 @@ class technical_specificationsController extends Controller
             $query->where('activity_name', $activity_name);
         })->first();
 
-        return view('preparation.technical_specifications.index', compact('technical_specifications', 'rkp_id', 'activity_name'));
+        return view('preparation.supplier.technical_specifications.index', compact('technical_specifications', 'rkp_id', 'activity_name'));
     }
 
     // Tampilkan form untuk menambah spesifikasi teknis
     public function create(Request $request)
     {
         $rkp_id = $request->query('rkp_id'); // Ambil rkp_id dari query string
-        return view('preparation.technical_specifications.index', compact('rkp_id'));
+        return view('preparation.supplier.technical_specifications.index', compact('rkp_id'));
     }
 
     // Simpan spesifikasi teknis baru
@@ -57,7 +57,7 @@ class technical_specificationsController extends Controller
         $name_activity = technical_specifications::where('user_id', auth()->id())->with('rkp_data')->first();
 
 
-        return view('preparation.technical_specifications.edit', compact('technical_specifications', 'rkp_id', 'name_activity'));
+        return view('preparation.supplier.technical_specifications.edit', compact('technical_specifications', 'rkp_id', 'name_activity'));
     }
 
     public function update(Request $request, $id)

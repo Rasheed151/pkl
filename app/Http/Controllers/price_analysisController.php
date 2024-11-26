@@ -55,7 +55,7 @@ class price_analysisController extends Controller
         })->first();
 
         // Kirim data ke view
-        return view('preparation.price_analysis.index', compact(
+        return view('preparation.supplier.price_analysis.index', compact(
             'technical_specifications_tenaga_kerja',
             'technical_specifications_bahan',
             'technical_specifications_peralatan',
@@ -72,7 +72,7 @@ class price_analysisController extends Controller
     public function create(Request $request)
     {
         $rkp_id = $request->query('rkp_id'); // Ambil rkp_id dari query string
-        return view('preparation.price_analysis.index', compact('rkp_id'));
+        return view('preparation.supplier.price_analysis.index', compact('rkp_id'));
     }
 
     public function store(Request $request)

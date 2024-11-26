@@ -70,7 +70,7 @@ class PDFController extends Controller
         $village_data = village_data::where('user_id', $id)->first(); // Pastikan data desa ditemukan
 
         // Membuat PDF dan mengembalikannya untuk ditampilkan di browser
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.schedule.pdf', compact('announcement', 'village_data'));
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.supplier.schedule.pdf', compact('announcement', 'village_data'));
 
         $pdf->setPaper('A4', 'landscape');
 
@@ -85,7 +85,7 @@ class PDFController extends Controller
         $village_data = village_data::where('user_id', $id)->first(); // Pastikan data desa ditemukan
 
         // Membuat PDF dan mengembalikannya untuk ditampilkan di browser
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.kak_data.pdf', compact('kak', 'village_data'));
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.supplier.kak_data.pdf', compact('kak', 'village_data'));
 
         $pdf->setPaper('A4', 'portrait');
 
@@ -101,7 +101,7 @@ class PDFController extends Controller
         $village_data = village_data::where('user_id', $id)->first(); // Pastikan data desa ditemukan
 
         // Membuat PDF dan mengembalikannya untuk ditampilkan di browser
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.technical_specifications.pdf', compact('technical_specifications', 'village_data'));
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.supplier.technical_specifications.pdf', compact('technical_specifications', 'village_data'));
 
         $pdf->setPaper('A4', 'portrait');
 
@@ -142,7 +142,7 @@ class PDFController extends Controller
         $village_data = village_data::where('user_id', $id)->first();
 
         // Membuat PDF dengan data yang sudah difilter
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.price_analysis.pdf', compact(
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.supplier.price_analysis.pdf', compact(
             'price_analysis_Tenaga_Kerja',
             'price_analysis_Bahan',
             'price_analysis_Peralatan',
@@ -173,7 +173,7 @@ class PDFController extends Controller
     $village_data = village_data::where('user_id', $id)->first(); // Pastikan data desa ditemukan
 
     // Membuat PDF dan mengembalikannya untuk ditampilkan di browser
-    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.price_estimate.pdf', compact('price_estimate', 'total_price','ppn','total_price_end','village_data'));
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('preparation.supplier.price_estimate.pdf', compact('price_estimate', 'total_price','ppn','total_price_end','village_data'));
 
     $pdf->setPaper('A4', 'portrait');
 

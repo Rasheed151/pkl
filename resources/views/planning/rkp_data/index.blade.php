@@ -174,7 +174,7 @@
                                 <!-- Jumlah dan Sumber Biaya -->
                                 <div>
                                     <label for="total_cost" class="block text-sm font-medium text-gray-700">Jumlah Biaya</label>
-                                    <input type="text" name="total_cost" placeholder="Masukkan Jumlah Biaya"
+                                    <input type="number" name="total_cost" placeholder="Masukkan Jumlah Biaya"
                                         class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
                                 <div>
@@ -342,7 +342,7 @@
                 if (field === 'Pemerintahan Desa') {
                     volumeFields.innerHTML = `
                 <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
-                <input type="text" name="volume" placeholder="Berapa Lama Kegiatan Berlangsung(Bulan)"
+                <input type="number" name="volume" placeholder="Berapa Lama Kegiatan Berlangsung(Bulan)"
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                  <input type="hidden" id="unit" name="unit" value="Bulan">
             `;
@@ -350,7 +350,7 @@
                 } else if (field === 'Pembangunan Desa') {
                     volumeFields.innerHTML = `
                 <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
-                <input type="text" name="volume" placeholder="Volume Dari Pembangunan(Meter)"
+                <input type="number" name="volume" placeholder="Volume Dari Pembangunan(Meter)"
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                  <input type="hidden" id="unit" name="unit" value="Meter">
             `;
@@ -358,7 +358,7 @@
                 } else if (field === 'Pembinaan Kemasyarakatan') {
                     volumeFields.innerHTML = `
                 <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
-                <input type="text" name="volume" placeholder="Jumlah Dari Permbinaan(paket)"
+                <input type="number" name="volume" placeholder="Jumlah Dari Permbinaan(paket)"
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                  <input type="hidden" id="unit" name="unit" value="Paket">
             `;
@@ -366,7 +366,7 @@
                 } else {
                     volumeFields.innerHTML = `
                 <label for="volume" class="block text-sm font-medium text-gray-700">Volume</label>
-                <input type="text" name="volume" placeholder="Jumlah Dari Perberdayaan (Unit)"
+                <input type="number" name="volume" placeholder="Jumlah Dari Perberdayaan (Unit)"
                     class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                  <input type="hidden" id="unit" name="unit" value="Unit">
             `;

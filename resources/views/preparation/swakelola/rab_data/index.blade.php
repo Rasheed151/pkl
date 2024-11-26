@@ -10,7 +10,7 @@
         <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="p-5">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Harga Perkiraan Sendiri (HPS) untuk Kegiatan {{ $activity_name}}</h2>
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Rencana Anggaran Biaya (RAB) untuk Kegiatan {{ $activity_name}}</h2>
 
 
                     <!-- Tambah Data -->
@@ -28,7 +28,7 @@
                         <thead
                             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">Nama Barang/Jasa
+                                <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">Kegiatan
                                 </th>
                                 <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
                                     Spesifikasi</th>
@@ -58,11 +58,6 @@
                                 <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> total_price}}</td>
                                 <td class="px-6 py-4 text-center border-b border-gray-200 dark:border-gray-700"
                                     style="display: flex; justify-content: space-between;">
-                                    <a href="#"
-                                        class="mx-2 text-yellow-600 dark:text-yellow-500 hover:text-yellow-700 dark:hover:text-yellow-400"
-                                        title="Edit Data">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
                                     <form action="{{ route('price_estimate.destroy', $data->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
@@ -100,7 +95,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content bg-white shadow-2xl rounded-xl">
                     <div class="modal-header border-b border-gray-200 py-4 px-6">
-                        <h5 class="modal-title text-2xl font-bold text-gray-800" id="staticModalLabel">Tambah Data Harga Perkiraan Sendiri (HPS)</h5>
+                        <h5 class="modal-title text-2xl font-bold text-gray-800" id="staticModalLabel">Tambah Data Rencana Anggaran Biaya (RAB)</h5>
                         <button type="button" class="btn-close text-gray-400 hover:text-gray-600" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>

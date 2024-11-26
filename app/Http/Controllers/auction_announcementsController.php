@@ -20,11 +20,10 @@ class auction_announcementsController extends Controller
     // Pastikan 'announcement' adalah nama model yang benar, atau sesuaikan dengan model yang digunakan
     $announcement = announcement::where('user_id', auth()->id())
         ->with('rkp_data', 'tpk_data')
-        ->get();
+        ->where('procurement_method','Penyedia')->get();
 
-    $rkp_data = rkp_data::where('user_id', auth()->id())->get();
 
-    return view('implementation.auction.index', compact('auction_announcements', 'announcement', 'rkp_data'));
+    return view('implementation.auction.index', compact('auction_announcements', 'announcement'));
 }
 
     

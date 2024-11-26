@@ -10,7 +10,7 @@
         <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="p-5">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white"> Data Pelaksanaan Secara Lelang</h2>
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white"> Data Pelaksanaan Secara Penawaran</h2>
 
 
                     <!-- Tambah Data -->
@@ -31,28 +31,25 @@
                                 <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">Nama Kegiatan
                                 </th>
                                 <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
-                                    Pengumuman</th>
+                                    Pembukaan Dokumen Penawaran</th>
                                 <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
-                                    Pendaftaran</th>
+                                    Evaluasi Teknis</th>
                                 <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
-                                    Pemasukan Penawaran</th>
-                                <th scope="col" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
-                                    Penetapan Pemenang</th>
+                                    Negosiasi Harga</th>
                                 <th scope="col"
                                     class="px-6 py-3 text-center border-b border-gray-200 dark:border-gray-700">Aksi
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($auction_announcements as $data )
+                            @foreach ($offer_implementation as $data )
                             <tr
                                 class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                                 <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> rkp_data -> activity_name}}</td>
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> announcement_time}}</td>
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> registration_time}}</td>
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> submission_time}}</td>
-                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> decision_time }}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> opening_time}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> evaluation_time}}</td>
+                                <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{$data -> negotiation_time}}</td>
                                 <td class="px-6 py-4 text-center border-b border-gray-200 dark:border-gray-700"
                                     style="display: flex; justify-content: space-between;">
                                     <button type="button"
@@ -60,19 +57,19 @@
                                         title="Edit Data" data-bs-toggle="modal" data-bs-target="#lihat{{ $data->id }}">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <a href="{{ route('auction_announcements.edit', $data->id) }}"
+                                    <a href="{{ route('offer_implementation.edit', $data->id) }}"
                                         class="mx-2 text-yellow-600 dark:text-yellow-500 hover:text-yellow-700 dark:hover:text-yellow-400"
                                         title="Edit Data">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('auction_announcements.destroy', $data->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('offer_implementation.destroy', $data->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-600 dark:text-red-500 hover:text-red-700 dark:hover:text-red-400">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
-                                    <a href="{{ route('auction_announcements.pdf', ['id' => $data->id, 'rkp_id' => $data->rkp_id]) }}"
+                                    <a href=""
                                         class=" mx-2 text-yellow-600 dark:text-yellow-500 hover:text-yellow-700 dark:hover:text-yellow-400"
                                         title="print Data">
                                         <i class="fas fa-print"></i>
@@ -105,12 +102,12 @@
                 <div class="modal-content bg-white shadow-2xl rounded-xl">
                     <div class="modal-header border-b border-gray-200 py-4 px-6">
                         <h5 class="modal-title text-2xl font-bold text-gray-800" id="staticModalLabel">
-                            Tambah Data Pelaksanaan Secara Lelang
+                            Tambah Data Pelaksanaan Secara Penawaran
                         </h5>
                         <button type="button" class="btn-close text-gray-400 hover:text-gray-600" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-6">
-                        <form id="dataForm" action="{{ route('auction_announcements.store') }}" method="POST">
+                        <form id="dataForm" action="{{ route('offer_implementation.store') }}" method="POST">
                             @csrf
 
                             <div>
@@ -125,64 +122,26 @@
 
                             <!-- Group 1: Pengumuman -->
                             <fieldset class="border p-4 mb-4 rounded-lg">
-                                <legend class="text-lg font-bold text-gray-700 mb-2">Pengumuman</legend>
+                                <legend class="text-lg font-bold text-gray-700 mb-2">Pembukaan Dokumen Penawaran</legend>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
-                                        <label for="date_announcement" class="block text-sm font-medium text-gray-700">Tanggal Pengumuman</label>
-                                        <input type="date" id="date_announcement" name="date_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <label for="date_opening" class="block text-sm font-medium text-gray-700">Tanggal Pembukaan</label>
+                                        <input type="date" id="date_opening" name="date_opening" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
-                                        <label for="time_announcement" class="block text-sm font-medium text-gray-700">Waktu Pengumuman</label>
-                                        <input type="time" id="time_announcement" name="time_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <label for="time_opening" class="block text-sm font-medium text-gray-700">Waktu Pembukaan</label>
+                                        <input type="time" id="time_opening" name="time_opening" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                     <div class="mb-4">
-                                        <label for="place_announcement" class="block text-sm font-medium text-gray-700">Tempat Pengumuman</label>
-                                        <input type="text" id="place_announcement" name="place_announcement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <label for="place_opening" class="block text-sm font-medium text-gray-700">Tempat Pembukaan</label>
+                                        <input type="text" id="place_opening" name="place_opening" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </div>
                                 </div>
                             </fieldset>
 
                             <!-- Group 2: Pendaftaran -->
                             <fieldset class="border p-4 mb-4 rounded-lg">
-                                <legend class="text-lg font-bold text-gray-700 mb-2">Pendaftaran</legend>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="mb-4">
-                                        <label for="date_registration" class="block text-sm font-medium text-gray-700">Tanggal Pendaftaran</label>
-                                        <input type="date" id="date_registration" name="date_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="time_registration" class="block text-sm font-medium text-gray-700">Waktu Pendaftaran</label>
-                                        <input type="time" id="time_registration" name="time_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="place_registration" class="block text-sm font-medium text-gray-700">Tempat Pendaftaran</label>
-                                        <input type="text" id="place_registration" name="place_registration" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <!-- Group 3: Pemasukan -->
-                            <fieldset class="border p-4 mb-4 rounded-lg">
-                                <legend class="text-lg font-bold text-gray-700 mb-2">Pemasukan</legend>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="mb-4">
-                                        <label for="date_income" class="block text-sm font-medium text-gray-700">Tanggal Pemasukan</label>
-                                        <input type="date" id="date_income" name="date_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="time_income" class="block text-sm font-medium text-gray-700">Waktu Pemasukan</label>
-                                        <input type="time" id="time_income" name="time_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="place_income" class="block text-sm font-medium text-gray-700">Tempat Pemasukan</label>
-                                        <input type="text" id="place_income" name="place_income" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <!-- Group 4: Evaluasi -->
-                            <fieldset class="border p-4 mb-4 rounded-lg">
-                                <legend class="text-lg font-bold text-gray-700 mb-2">Evaluasi</legend>
+                                <legend class="text-lg font-bold text-gray-700 mb-2">Evaluasi Teknis Dan Biaya</legend>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_evaluation" class="block text-sm font-medium text-gray-700">Tanggal Evaluasi</label>
@@ -199,9 +158,9 @@
                                 </div>
                             </fieldset>
 
-                            <!-- Group 5: Negosiasi -->
+                            <!-- Group 3: Pemasukan -->
                             <fieldset class="border p-4 mb-4 rounded-lg">
-                                <legend class="text-lg font-bold text-gray-700 mb-2">Negosiasi</legend>
+                                <legend class="text-lg font-bold text-gray-700 mb-2">Negosiasi Harga</legend>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mb-4">
                                         <label for="date_negotiation" class="block text-sm font-medium text-gray-700">Tanggal Negosiasi</label>
@@ -217,24 +176,12 @@
                                     </div>
                                 </div>
                             </fieldset>
-
-                            <fieldset class="border p-4 mb-4 rounded-lg">
-                                <legend class="text-lg font-bold text-gray-700 mb-2">penepatan</legend>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="mb-4">
-                                        <label for="date_placement" class="block text-sm font-medium text-gray-700">Tanggal penepatan</label>
-                                        <input type="date" id="date_placement" name="date_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="time_placement" class="block text-sm font-medium text-gray-700">Waktu penepatan</label>
-                                        <input type="time" id="time_placement" name="time_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="place_placement" class="block text-sm font-medium text-gray-700">Tempat penepatan</label>
-                                        <input type="text" id="place_placement" name="place_placement" class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    </div>
-                                </div>
-                            </fieldset>
+                            <div>
+                                <label for="information" class="block text-sm font-medium text-gray-700">Keterangan(Opsional)</label>
+                                <textarea name="information" placeholder="Masukkan Keterangan"
+                                    class="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm resize-none min-h-[80px] max-h-[500px] overflow-y-auto"
+                                    id="autoResize"></textarea>
+                            </div>
                             <p id="errorMessage" class="text-red-500 mt-2 hidden">Harap lengkapi data terlebih dahulu!</p>
                             <!-- Submit Button -->
                             <div class="flex justify-between mt-6">
@@ -281,7 +228,7 @@
 
 
 
-        @foreach($auction_announcements as $data)
+        @foreach($offer_implementation as $data)
 
 
 
@@ -295,59 +242,27 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ route('auction_announcements.show', $data->id) }}" method="get" enctype="multipart/form-data">
+                        <form action="{{ route('offer_implementation.show', $data->id) }}" method="get" enctype="multipart/form-data">
+
                             <div class="mb-3">
-                                <label class="form-label">Nama Kegiatan</label>
+                                <label class="form-label">Waktu Pengumuman</label>
                                 <p class="isi-lihat">{{ $data->rkp_data->activity_name }}</p>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Ketua TPK</label>
-                                <p class="isi-lihat">{{ $data->announcement->tpk_data->head_name }}</p>
+                                <label class="form-label">Waktu Pemasukan Dan Pembukaan Dokumen Penawaran</label>
+                                <p class="isi-lihat">{{ $data->opening_time }}</p>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Sekertaris TPK</label>
-                                <p class="isi-lihat">{{ $data->announcement->tpk_data->secretary_name }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Anggota TPK</label>
-                                <p class="isi-lihat">{{ $data->announcement->tpk_data->member_name }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Lokasi Kegiatan</label>
-                                <p class="isi-lihat">{{ $data->rkp_data->activity_location }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Bidang</label>
-                                <p class="isi-lihat">{{ $data->rkp_data->field }}</p>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Waktu Pelaksanaan</label>
-                                <p class="isi-lihat">{{ $data->rkp_data->implementation_time }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Waktu Pengumuman</label>
-                                <p class="isi-lihat">{{ $data->announcement_time }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Waktu Pendaftaran</label>
-                                <p class="isi-lihat">{{ $data->registration_time }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Waktu Pemasukan</label>
-                                <p class="isi-lihat">{{ $data->submission_time }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Waktu Evaluasi</label>
+                                <label class="form-label">Evaluasi Teknis Dan Biaya</label>
                                 <p class="isi-lihat">{{ $data->evaluation_time }}</p>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Waktu Negosiasi</label>
+                                <label class="form-label">Negosiasi Harga</label>
                                 <p class="isi-lihat">{{ $data->negotiation_time }}</p>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Waktu Penetapan</label>
-                                <p class="isi-lihat">{{ $data->decision_time }}</p>
+                                <label class="form-label">Keterangan (Opsional)</label>
+                                <p class="isi-lihat">{{ $data->information }}</p>
                             </div>
                         </form>
 
@@ -360,7 +275,15 @@
         </div>
         @endforeach
 
+        <script>
+            const textarea = document.getElementById('autoResize');
 
+            // Fungsi untuk menyesuaikan tinggi textarea sesuai dengan konten
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto'; // Reset height
+                this.style.height = this.scrollHeight + 'px'; // Set height to scroll height
+            });
+        </script>
 
 
         @endsection

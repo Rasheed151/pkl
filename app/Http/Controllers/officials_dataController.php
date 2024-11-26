@@ -18,7 +18,7 @@ class officials_dataController extends Controller
         return view('general_data/officials_data/index');
     }
 
-    public function store(Request $request)
+    public function store(Request $request,$user_id = null)
     {
         $request->validate([
             'name' => 'required',
@@ -32,12 +32,13 @@ class officials_dataController extends Controller
             'position' => 'required',
         ]);
 
+
         // Gabungkan tempat dan tanggal lahir
         $birthplace_date = $request->input('birth_date') . ', ' . $request->input('birth_place');
         // Buat array data baru dengan tempat_tanggal_lahir yang digabungkan
         $data = $request->all();
         $data['birthplace_date'] = $birthplace_date;
-        $data['user_id'] = auth()->id();
+        $data['user_id'] = $user_id ?? auth()->id();
 
         // Simpan data
         officials_data::create($data);

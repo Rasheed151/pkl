@@ -152,7 +152,7 @@
                 <div class="menu_title menu_3"></div>
 
                 <li class="item">
-                    <a href="#" class="nav_link">
+                    <a href="preparation_swakelola" class="nav_link">
                         <span class="navlink_icon">
                             <i class="bx bx-briefcase-alt-2"></i>
                         </span>
@@ -182,7 +182,7 @@
                 <div class="menu_title menu_5"></div>
 
                 <li class="item">
-                    <a href="#" class="nav_link">
+                    <a href="swakelola_implementation" class="nav_link">
                         <span class="navlink_icon">
                             <i class="bx bx-briefcase-alt-2"></i>
                         </span>
@@ -205,7 +205,7 @@
                 <div class="menu_title menu_4"></div>
 
                 <li class="item">
-                    <a href="#" class="nav_link">
+                    <a href="submission_swakelola_choose" class="nav_link">
                         <span class="navlink_icon">
                             <i class="bx bx-briefcase-alt-2"></i>
                         </span>
@@ -214,7 +214,7 @@
                 </li>
 
                 <li class="item">
-                    <a href="submission" class="nav_link">
+                    <a href="submission_supplier_choose" class="nav_link">
                         <span class="navlink_icon">
                             <i class="bx bx-store-alt"></i>
                         </span>

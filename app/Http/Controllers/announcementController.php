@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\announcement;
 use App\Models\rkp_data;
 use App\Models\tpk_data;
+use App\Models\swakelola_schedule;
 use Carbon\Carbon;
 
 
@@ -53,6 +54,14 @@ class announcementController extends Controller
             'start_date' => $startDate,
             'end_date' => $endDate,
         ])->all());
+
+        if ($request->procurement_method === 'Swakelola') {
+            swakelola_schedule::create([
+                'progress' => 0,
+                'rkp_id' => $request->rkp_id,
+                'user_id' => auth()->id(),
+            ]);
+        }
 
         return redirect()->route('announcement.index')->with('success', 'Data berhasil disimpan');
     }
@@ -124,9 +133,9 @@ class announcementController extends Controller
 
     public function scheduleindex()
     {
-        $announcement = announcement::where('user_id', auth()->id())->with('rkp_data','tpk_data')->get();
+        $announcement = announcement::where('user_id', auth()->id())->where('procurement_method','Penyedia')->with('rkp_data','tpk_data')->get();
 
-        return view('preparation.schedule.index', compact('announcement'));
+        return view('preparation.supplier.schedule.index', compact('announcement'));
     }
 
 }
