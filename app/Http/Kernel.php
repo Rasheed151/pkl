@@ -67,7 +67,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,  // Pastikan ini ada
-        'name_check' => \App\Http\Middleware\name_checkMiddleware::class,
+        'level_check' => \App\Http\Middleware\level_check_middleware::class,
         'protected' => \App\Http\Middleware\protectedMiddleware::class,
     ];
 }

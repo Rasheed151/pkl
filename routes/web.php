@@ -86,7 +86,7 @@ use App\Http\Controllers\offer_implementationController;
 Route::group(['middleware' => 'auth'], function () {
     
     // CRUD data General Dan planning
-    Route::resource('/home', village_dataController::class)->middleware('name_check');
+    Route::resource('/home', village_dataController::class)->middleware('level_check');
     Route::resource('/officials_data', officials_dataController::class);
     Route::resource('/pka_data', pka_dataController::class);
     Route::resource('/tpk_data', tpk_dataController::class);
