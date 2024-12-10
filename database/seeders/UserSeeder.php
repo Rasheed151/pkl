@@ -32,9 +32,9 @@ class UserSeeder extends Seeder
             ],
 
             [
-                'name' => 'sangataSelatan',
-                'email' => 'sangataSelatan@klipaa.id',
-                'password' => Hash::make('klipaaIndonesia'),
+                'name' => 'admin',
+                'email' => 'admih@klipaa.id',
+                'password' => Hash::make('klipaasolusiindonesia'),
             ],
 
         ]);
